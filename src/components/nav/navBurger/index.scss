@@ -1,0 +1,68 @@
+@import "../../../styles/abstracts/variables/index";
+@import "../../../styles/abstracts/mixins/index";
+
+.burger {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  width: 26px;
+  height: 26px;
+  position: fixed;
+  right: 40px;
+  z-index: 100;
+
+  &-bar{
+    width: 100%;
+    border-radius: 20px;
+    transform-origin: 0px;
+    border: solid 2px $black;
+
+    &-top {
+      transformOrigin: left bottom;
+      transition: 0.5s;
+      transitionTiming: ease-out;
+
+      &--open {
+          transform: rotate(45deg);
+        }
+
+      &--closed {
+          transform: rotate(0deg);
+        }
+    }
+
+    &-middle {
+
+      &--open {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      &--closed {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    &-bottom {
+      transformOrigin: left bottom;
+      transition: 0.5s;
+      transitionTiming: ease-out;
+
+      &--open {
+        transform: rotate(-45deg);
+      }
+
+      &--closed {
+        transform: rotate(0deg);
+      }
+    }
+
+
+  }
+
+  @include breakpoint(screen-m) {
+    display: none;
+  }
+
+}

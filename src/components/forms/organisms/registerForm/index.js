@@ -23,6 +23,8 @@ export const RegisterForm = () => {
         setSubmitSuccess(true);
         console.log(data);
         e.target.reset();
+
+        // try catch post request , als response positie is setsubmitsucces it true
     }
 
     function onToaster(data) {
@@ -42,6 +44,8 @@ export const RegisterForm = () => {
     useEffect(() => {
         getAllClients();
     }, [])
+
+    // useEffect setsubitsucces
 
     async function getAllClients() {
         try {

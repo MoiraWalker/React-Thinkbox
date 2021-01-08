@@ -1,11 +1,18 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .page-container {
   display: flex;
-  flex-basis: 100px;
+  flex-basis: 1200px;
+  shrink: 1;
+  padding: 2rem;
 }
 
 .page-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 130px);
 }

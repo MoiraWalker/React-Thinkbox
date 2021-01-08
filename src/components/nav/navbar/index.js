@@ -1,8 +1,7 @@
 import './index.scss';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
-import { RightNav } from "../rightnav";
-import { NavBurger } from "../navburger";
+import { NavBurger } from "../navBurger";
 
 export const NavBar = () => (
  <nav className='navbar'>

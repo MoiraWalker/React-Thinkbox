@@ -4,7 +4,7 @@ export const BurgerBarContext = createContext({});
 
 
 const BurgerBarContextProvider = ({ children}) => {
-    const [open, setOpen ]= useState(true);
+    const [open, setOpen ]= useState(false);
     return (
         <BurgerBarContext.Provider value={{open, setOpen}}>
             {children}

@@ -4,17 +4,11 @@ import { BurgerBarContext } from "../../../context/burgerBarContextProvider";
 import { useContext } from 'react';
 
 
-export const RightNav = () => {
+export const NavList = () => {
     const { open, setOpen } = useContext(BurgerBarContext);
 
-    const rightNavStyle = {
-        transform: open ? 'translateX(100%)' : 'translateX(0)',
-        transition: '0.5s',
-        transitionTiming: 'ease-out',
-    };
-
     return(
-        <ul style={rightNavStyle} className="nav-list">
+        <ul className={open ? 'nav-list nav-list--open' : 'nav-list nav-list--closed'} >
             <li><NavLink to="/" exact activeClassName="nav-link--active" className="nav-link">Projects</NavLink></li>
             <li><NavLink to="/user" exact activeClassName="nav-link--active" className="nav-link nav-link-padding">Moira</NavLink></li>
             <li><NavLink to="/user" exact activeClassName="nav-link--active" className="nav-link test">Test</NavLink></li>

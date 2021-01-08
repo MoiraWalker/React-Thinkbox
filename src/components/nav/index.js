@@ -1,7 +1,10 @@
 import { NavBar} from "./nav/navbar";
-import { Button } from "./button";
+import { NavBurger } from "./navBurger";
+import { NavList } from "./navList";
+
 
 export {
     NavBar,
-    Button,
+    NavBurger,
+    NavList,
 }
