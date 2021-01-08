@@ -1,0 +1,27 @@
+@import "../../../styles/abstracts/variables/index";
+@import "../../../styles/abstracts/mixins/index";
+
+.burger {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  width: 26px;
+  height: 26px;
+  position: fixed;
+  right: 40px;
+  top: 30px;
+  z-index: 100;
+
+
+  @include breakpoint(screen-m) {
+    display: none;
+  }
+
+
+  &-bar{
+    width: 100%;
+    border: solid 2px;
+    border-radius: 20px;
+    transform-origin: 2px;
+  }
+}

@@ -1,0 +1,50 @@
+@import "../../../styles/abstracts/variables/index";
+@import "../../../styles/abstracts/mixins/index";
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  flex-flow: column nowrap;
+  background-color: $menu-color;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 300px;
+  padding-top: 2rem;
+
+
+  .test {
+    display: block;
+  }
+
+  @include breakpoint(screen-m) {
+    flex-flow: row nowrap;
+    background-color: transparent;
+    position: initial;
+    height: initial;
+    width: initial;
+    padding-top: 0;
+
+    .test {
+      display: none;
+    }
+  }
+}
+
+.nav-link {
+  color: $black;
+  text-decoration: none;
+  font-size: 2.1em;
+
+    &-padding {
+      padding-left: 0;
+
+      @include breakpoint(screen-m) {
+        padding-left: 5vw;
+      }
+    }
+
+}
+
+

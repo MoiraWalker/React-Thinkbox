@@ -1,0 +1,25 @@
+// breakpoints
+@mixin breakpoint($point) {
+  @if $point == screen-xs {
+    @media screen and(min-width: 320px) { @content; }
+  }
+  @else if $point == screen-s {
+    @media screen and(min-width: 600px) { @content; }
+  }
+  @else if $point == screen-m {
+    @media screen and(min-width: 740px) { @content; }
+  }
+  @else if $point == screen-l {
+    @media screen and(min-width: 992px) { @content; }
+  }
+  @else if $point == screen-xl {
+    @media screen and(min-width: 1200px) { @content; }
+  }
+}
+
+// layout
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

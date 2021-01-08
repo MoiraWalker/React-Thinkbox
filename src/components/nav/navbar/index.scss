@@ -1,0 +1,22 @@
+@import "../../../styles/abstracts/variables/index";
+@import "../../../styles/abstracts/mixins/index";
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  width: 100vw;
+  background-color: $off-white;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  flex-basis: 1100px;
+  flex-shrink: 1;
+}

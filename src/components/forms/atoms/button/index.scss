@@ -1,0 +1,14 @@
+@import "../../../../styles/abstracts/variables";
+
+.button-primary {
+    padding: 10px 40px 10px 40px;
+    background-color: $button-primary;
+    font-size: 16px;
+    color: $text-color-primary;
+    outline: none;
+    border: none;
+}
+
+.button-primary:hover {
+    background-color: $button-primary-hover;
+}

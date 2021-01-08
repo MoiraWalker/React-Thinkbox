@@ -1,0 +1,57 @@
+.form-wrapper {
+    display: flex;
+    background-color: lightblue;
+    flex-direction: column;
+    width: 300px;
+    padding:20px;
+}
+
+.form-item {
+    padding-bottom: 20px;
+}
+
+legend {
+    font-size: 24px;
+    font-weight: 400;
+    font-family: Bahnschrift;
+    color: #0B5345;
+    padding-bottom: 10px;
+}
+
+.form-sent {
+    background-color: #86f3b2;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    animation-name: sent-animation;
+    animation-duration: 2s;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.form-sent-p{
+   margin-left: auto;
+
+}
+
+.form-sent-img{
+    margin-left: auto;
+
+}
+
+@keyframes sent-animation {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+
+}
+
+.form-provider {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-different{
+    margin-top: 20px;
+}

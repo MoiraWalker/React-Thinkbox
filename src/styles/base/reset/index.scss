@@ -1,0 +1,18 @@
+@import '../../abstracts/variables';
+
+*,
+*::after
+*::before {
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: $background-color-primary;
+}
+
+ul {
+  margin: 0px;
+}
