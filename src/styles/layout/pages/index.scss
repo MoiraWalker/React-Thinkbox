@@ -1,3 +1,5 @@
+@import "../../abstracts/variables";
+
 .page-wrapper {
   display: flex;
   justify-content: center;
@@ -15,4 +17,9 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 130px);
+}
+
+.page-header {
+  color: $off-white;
+  font-weight: 400;
 }
