@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-export const Input = ({type, name, id, fieldRef, value}) => (
+export const Input = ({type, name, id, fieldRef, value, onChange}) => (
     <input
         className="input"
         type={type}
@@ -9,5 +9,6 @@ export const Input = ({type, name, id, fieldRef, value}) => (
         id={id || name}
         ref={fieldRef}
         value={value}
+        onChange={onChange}
     />
 );

@@ -3,12 +3,12 @@ import { useFormContext } from 'react-hook-form';
 import { Label, Input, ErrorMessage } from '../../atoms';
 import './index.scss';
 
-export const InputField = ({ label, name, fieldRef, type = 'text' }) => {
+export const InputField = ({ label, name, fieldRef, type = 'text', onChange }) => {
     const { errors } = useFormContext();
     return (
         <div>
             <Label name={name}>{label}</Label>
-            <Input type={type} fieldRef={fieldRef} name={name} />
+            <Input type={type} fieldRef={fieldRef} name={name} onChange={onChange} />
             {errors[name] && (
                 <ErrorMessage>{errors[name].message || 'Error'}</ErrorMessage>
             )}

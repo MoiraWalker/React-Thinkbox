@@ -1,67 +1,67 @@
 import React from 'react';
-import { ButtonWrapper, SelectBox, CheckboxInput, InputField, TextArea } from "../../molecules";
-import { Button, SelectOption } from '../../atoms';
+import { ButtonWrapper, InputField } from "../../molecules";
+import { Button } from '../../atoms';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import './index.scss';
-import {NavLink, useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export const RegisterForm = () => {
     const { register, unregister, watch, reset, handleSubmit, ...methods } = useForm({
         mode: 'onChange'
     });
-    const [sumbitSuccess, setSubmitSuccess] = useState(false);
 
-    let history = useHistory();
+    const [submitSuccess, setSubmitSuccess] = useState(false);
 
-    function handleClick() {
-        history.push("/home");
-    }
-
-    function onFormSubmit(data, e) {
-        setSubmitSuccess(true);
-        console.log(data);
-        e.target.reset();
-
-        // try catch post request , als response positie is setsubmitsucces it true
-    }
-
-    function onToaster(data) {
-        setSubmitSuccess(false);
-    }
+    const [state, setState] = React.useState( {
+        firstName: "",
+        lastName: "",
+        clientNr: "",
+        email: ""
+    })
 
     const onError = (errorList) => {
         console.log(errorList)
     }
 
-    const selectedReferrer = watch('pets');
 
-    //down here axios
-    const [clients, setClients] = useState([]);
-    const [updateId, setUpdateId] = useState(null);
+    let history = useHistory();
 
-    useEffect(() => {
-        getAllClients();
-    }, [])
-
-    // useEffect setsubitsucces
-
-    async function getAllClients() {
-        try {
-            const result = await axios.get(`http://localhost:8080/clients`);
-            console.log('axios result: ', result);
-            setClients(result.data);
-        } catch (error) {
-            console.error(error);
-        }
+    // functions
+    function onFormSubmit(data, e) {
+            try {
+                const result = axios.post(`http://localhost:8080/clients`, state);
+                console.log('added client: ', result);
+                setSubmitSuccess(true);
+                history.push("/home");
+            } catch (error) {
+                console.error(error);
+            }
     }
 
-    // async function addClient(client) {
+    function handleChange(evt) {
+        const value = evt.target.value;
+        setState({
+            ...state,
+            [evt.target.name]: value
+        });
+    }
+
+    // axios
+    // const [clients, setClients] = useState([]);
+    // const [updateId, setUpdateId] = useState(null);
+    //
+    // useEffect(() => {
+    //     getAllClients();
+    // }, [])
+    //
+    //
+    // async function getAllClients() {
     //     try {
-    //         const result = await axios.post(`http://localhost:8080/clients`, client);
+    //         const result = await axios.get(`http://localhost:8080/clients`);
     //         console.log('axios result: ', result);
-    //         getAllClients();
+    //         setClients(result.data);
     //     } catch (error) {
     //         console.error(error);
     //     }
@@ -77,10 +77,12 @@ export const RegisterForm = () => {
                      name="firstName"
                      label="First name"
                      type="text"
+                     value={state.firstName}
+                     onChange={handleChange}
                      fieldRef={register({
                          required: {
                              value: true,
-                             message: 'User name is required',
+                             message: 'First name is required',
                          }
                      })}
                  />
@@ -90,19 +92,21 @@ export const RegisterForm = () => {
                      name="lastName"
                      label="Last name"
                      type="text"
+                     onChange={handleChange}
                      fieldRef={register({
                          required: {
                              value: true,
-                             message: 'User name is required',
+                             message: 'Last name is required',
                          }
                      })}
                  />
              </div>
                  <div className='form-item'>
                      <InputField
-                         name="userId"
-                         label="User Id"
+                         name="clientNr"
+                         label="Client number"
                          type="text"
+                         onChange={handleChange}
                          fieldRef={register({
                              required: {
                                  value: true,
@@ -111,14 +115,27 @@ export const RegisterForm = () => {
                          })}
                      />
                  </div>
+                 <div className='form-item'>
+                     <InputField
+                         name="email"
+                         label="Email"
+                         type="text"
+                         onChange={handleChange}
+                         fieldRef={register({
+                             required: {
+                                 value: true,
+                                 message: 'Email name is required',
+                             }
+                         })}
+                     />
+                 </div>
              <ButtonWrapper>
-                 <Button type="button" onClick={handleClick}>Create account</Button>
+                 <Button type="button" onClick={onFormSubmit}>Create account</Button>
              </ButtonWrapper>
-                 <ButtonWrapper>
-                     <Button type="button" onClick={getAllClients}> Console log all clients</Button>
-                 </ButtonWrapper>
              </div>
          </form>
      </FormProvider>
  );
 }
+
+

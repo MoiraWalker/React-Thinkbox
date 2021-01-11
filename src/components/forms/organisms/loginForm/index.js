@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import './index.scss';
 import {NavLink, useHistory} from "react-router-dom";
 import { LinkWrapper } from "../../molecules/linkWrapper";
+import close from "../../../../assets/images/close.svg";
 
 
 export const LoginForm = () => {
@@ -28,6 +29,7 @@ export const LoginForm = () => {
 
     function onToaster(data) {
         setSubmitSuccess(false);
+        console.log("toaster");
     }
 
     const onError = (errorList) => {
