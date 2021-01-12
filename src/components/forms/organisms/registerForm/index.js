@@ -17,8 +17,8 @@ export const RegisterForm = () => {
     const [state, setState] = React.useState( {
         firstName: "",
         lastName: "",
-        clientNr: "",
-        email: ""
+        email: "",
+        password: "",
     })
 
     const onError = (errorList) => {
@@ -71,7 +71,7 @@ export const RegisterForm = () => {
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
          <form onSubmit={handleSubmit(onFormSubmit, onError)}>
              <div className="form-wrapper">
-             <h3>Register</h3>
+             <h2>Register</h2>
              <div className='form-item'>
                  <InputField
                      name="firstName"
@@ -103,20 +103,6 @@ export const RegisterForm = () => {
              </div>
                  <div className='form-item'>
                      <InputField
-                         name="clientNr"
-                         label="Client number"
-                         type="text"
-                         onChange={handleChange}
-                         fieldRef={register({
-                             required: {
-                                 value: true,
-                                 message: 'User name is required',
-                             }
-                         })}
-                     />
-                 </div>
-                 <div className='form-item'>
-                     <InputField
                          name="email"
                          label="Email"
                          type="text"
@@ -125,6 +111,28 @@ export const RegisterForm = () => {
                              required: {
                                  value: true,
                                  message: 'Email name is required',
+                             },
+                             pattern: {
+                                 value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                                 message: 'The given email adress is not valid'
+                             }
+                         })}
+                     />
+                 </div>
+                 <div className='form-item'>
+                     <InputField
+                         name="password"
+                         label="Password"
+                         type="password"
+                         onChange={handleChange}
+                         fieldRef={register({
+                             required: {
+                                 value: true,
+                                 message: 'Password name is required',
+                             },
+                             pattern: {
+                                 value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/,
+                                 message: 'Password is not strong enough. Password should contain, special character, capital letter, number and have a minimum length of 8 characters.'
                              }
                          })}
                      />
