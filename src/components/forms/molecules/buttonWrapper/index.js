@@ -3,5 +3,5 @@ import './index.scss';
 
 
 export const ButtonWrapper = ({ children} ) => (
-    <section>{children}</section>
+    <section className="button__wrapper">{children}</section>
 );

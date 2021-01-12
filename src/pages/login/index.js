@@ -3,7 +3,7 @@ import { LoginForm } from "../../components/forms/organisms/loginForm"
 
 export const Login = () => {
     return(
-       <div className="page-container page-center">
+       <div className="page__container page__center">
             <LoginForm/>
        </div>
     );

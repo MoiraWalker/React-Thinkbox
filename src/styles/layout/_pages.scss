@@ -1,25 +1,26 @@
-@import "../../abstracts/variables";
+@import "../abstracts/variables";
 
-.page-wrapper {
+.page__wrapper {
   display: flex;
   justify-content: center;
 }
 
-.page-container {
+.page__container {
   display: flex;
   flex-basis: 1200px;
   shrink: 1;
   padding: 2rem;
 }
 
-.page-center {
+.page__center {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 130px);
 }
 
-.page-header {
+.page__header {
   color: $off-white;
   font-weight: 400;
 }
+

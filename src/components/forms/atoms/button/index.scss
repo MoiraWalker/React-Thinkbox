@@ -1,6 +1,7 @@
 @import "../../../../styles/abstracts/variables";
 
-.button-primary {
+
+.button {
     padding: 10px 40px 10px 40px;
     background-color: $button-primary;
     font-size: 16px;
@@ -8,7 +9,11 @@
     outline: none;
     border: none;
 }
+.button--primary {
+    color: $text-color-primary;
+}
 
-.button-primary:hover {
+
+.button--primary:hover {
     background-color: $button-primary-hover;
 }

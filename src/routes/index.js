@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Login, Project, Projects, Register, User } from '../pages';
+import { Login, Project, Projects, Admin, Register, User } from '../pages';
 
 export const Routes = () => {
     return (
@@ -9,6 +9,7 @@ export const Routes = () => {
             <Route path="/register" component={Register}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/login" component={Project}></Route>
+            <Route path="/admin" component={Admin}></Route>
             {/*<Route path="/post:id" component={BlogPost}/>*/}
             <Route path="/user" component={User}></Route>
         </Switch>

@@ -49,23 +49,23 @@ export const RegisterForm = () => {
     }
 
     // axios
-    // const [clients, setClients] = useState([]);
-    // const [updateId, setUpdateId] = useState(null);
-    //
-    // useEffect(() => {
-    //     getAllClients();
-    // }, [])
-    //
-    //
-    // async function getAllClients() {
-    //     try {
-    //         const result = await axios.get(`http://localhost:8080/clients`);
-    //         console.log('axios result: ', result);
-    //         setClients(result.data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+    const [clients, setClients] = useState([]);
+    const [updateId, setUpdateId] = useState(null);
+
+    useEffect(() => {
+        getAllClients();
+    }, [])
+
+
+    async function getAllClients() {
+        try {
+            const result = await axios.get(`http://localhost:8080/clients`);
+            console.log('all clients: ', result);
+            setClients(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
