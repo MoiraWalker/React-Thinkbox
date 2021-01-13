@@ -1,6 +1,6 @@
 import './index.scss';
 
-export const User = () => {
+export const Account = () => {
     return(
         <div className='page__wrapper'>
             <div className="page__container">

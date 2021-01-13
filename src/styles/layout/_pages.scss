@@ -7,6 +7,7 @@
 
 .page__container {
   display: flex;
+  flex-direction: column;
   flex-basis: 1200px;
   shrink: 1;
   padding: 2rem;

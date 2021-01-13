@@ -9,10 +9,10 @@ export const NavList = () => {
 
     return(
         <ul className={open ? 'nav-list nav-list--open' : 'nav-list nav-list--closed'} >
-            <li><NavLink to="/admin" exact activeClassName="nav-link--active" className="nav-link nav-link-padding">Admin</NavLink></li>
-            <li><NavLink to="/" exact activeClassName="nav-link--active" className="nav-link">Projects</NavLink></li>
-            <li><NavLink to="/user" exact activeClassName="nav-link--active" className="nav-link nav-link-padding">Moira</NavLink></li>
-            <li><NavLink to="/user" exact activeClassName="nav-link--active" className="nav-link test">Test</NavLink></li>
+            <li><NavLink to="/admin" exact activeClassName="nav-link--active" className="nav-link nav-link__padding nav-link--is-authorised">Admin</NavLink></li>
+            <li><NavLink to="/" exact activeClassName="nav-link--active" className="nav-link nav-link__padding">Projects</NavLink></li>
+            <li><NavLink to="/account" exact activeClassName="nav-link--active" className="nav-link nav-link__padding">Moira</NavLink></li>
+            <li><NavLink to="/account" exact activeClassName="nav-link--active" className="nav-link nav-link__logout">Logout</NavLink></li>
         </ul>
     );
 };

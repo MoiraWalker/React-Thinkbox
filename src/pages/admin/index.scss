@@ -1,2 +1,7 @@
 @import '../../styles/layout/pages';
 
+.user__container {
+  display:flex;
+  flex-wrap: wrap;
+  width: 100%;
+}

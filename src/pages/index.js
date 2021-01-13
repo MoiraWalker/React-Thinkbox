@@ -3,14 +3,14 @@ import { Login } from './login';
 import { Project } from './project';
 import { Projects } from './projects';
 import { Register } from './register';
-import { User } from './user';
+import { Account } from './account';
 
 
 export {
+    Account,
     Admin,
     Login,
     Project,
     Projects,
     Register,
-    User,
 }

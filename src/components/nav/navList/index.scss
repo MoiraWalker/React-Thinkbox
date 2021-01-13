@@ -41,7 +41,7 @@
       transform: translateX(0);
     }
 
-    .test {
+    .nav-link__logout {
       display: none;
     }
   }
@@ -52,7 +52,11 @@
   text-decoration: none;
   font-size: 2.1em;
 
-    &-padding {
+  &--is-authorised {
+    //display: none;
+  }
+
+    &__padding {
       padding-left: 0;
 
       @include breakpoint(screen-m) {
