@@ -2,13 +2,22 @@ import './index.scss';
 import React from 'react';
 import axios from "axios";
 
-export const User = ( client ) => {
+export const User = ({ id, email, isDeleted, firstName, lastName  })  => {
+
+
+    // async function getAllClients() {
+    //     try {
+    //         const result = await axios.get(`http://localhost:8080/clients`);
+    //         console.log('axios result: ', result);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     async function deleteUser(id) {
         try {
-            console.log('client id ', client.id);
-            console.log('client id ', client);
             const result = await axios.delete(`http://localhost:8080/clients/${id}`);
+            isDeleted(id);
         } catch (error) {
             console.error(error);
         }
@@ -16,10 +25,10 @@ export const User = ( client ) => {
 
     return (
         <div className="user__card">
-            <h2>{client.firstName +" "+ client.lastName}</h2>
-            <p>{client[0]}</p>
+            <h2>{firstName +" "+ lastName}</h2>
+            <p>{email}</p>
             <div className="user__button-wrapper">
-                <button  onClick={() => deleteUser(client.id)}>x</button>
+                <button  onClick={() => deleteUser(id)}>x</button>
                 <button>E</button>
             </div>
         </div>

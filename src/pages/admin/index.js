@@ -8,10 +8,19 @@ export const Admin = () => {
     // axios
     const [clients, setClients] = useState([]);
     const [updateId, setUpdateId] = useState(null);
+    const [isDeleted, setIsDeleted ] = useState(null);
 
     useEffect(() => {
         getAllClients();
     }, [])
+
+    useEffect(() => {
+        if (isDeleted) {
+            getAllClients();
+            setIsDeleted(null);
+        }
+        console.log(isDeleted);
+    }, [isDeleted])
 
 
     async function getAllClients() {
@@ -33,7 +42,7 @@ export const Admin = () => {
                 <div className='user__container'>
                     {
                         clients.map((client) => {
-                            return <User key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email} id={client.id}></User>
+                            return <User isDeleted={setIsDeleted} key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email} id={client.id}></User>
                         })
                     }
                 </div>

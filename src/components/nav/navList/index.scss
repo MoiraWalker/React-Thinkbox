@@ -34,8 +34,8 @@
     height: initial;
     width: initial;
     padding-top: 0;
-    transition: 0s;
-    transition-timing: none;
+    //transition: 0s;
+    //transition-timing: none;
 
     &--closed {
       transform: translateX(0);

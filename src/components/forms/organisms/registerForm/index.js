@@ -14,24 +14,23 @@ export const RegisterForm = () => {
 
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
-    const [state, setState] = React.useState( {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-    });
+    // const [state, setState] = React.useState( {
+    //     firstName: "",
+    //     lastName: "",
+    //     email: "",
+    //     password: "",
+    // });
 
     const onError = (errorList) => {
         console.log(errorList)
     }
 
-
     let history = useHistory();
 
     // functions
-    function onFormSubmit(data, e) {
+    function onSucces(data, e) {
             try {
-                const result = axios.post(`http://localhost:8080/clients`, state);
+                const result = axios.post(`http://localhost:8080/clients`, data);
                 console.log('added client: ', result);
                 setSubmitSuccess(true);
                 history.push("/home");
@@ -40,17 +39,17 @@ export const RegisterForm = () => {
             }
     }
 
-    function handleChange(evt) {
-        const value = evt.target.value;
-        setState({
-            ...state,
-            [evt.target.name]: value
-        });
-    }
+    // function handleChange(evt) {
+    //     const value = evt.target.value;
+    //     setState({
+    //         ...state,
+    //         [evt.target.name]: value
+    //     });
+    // }
 
     return (
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-         <form onSubmit={handleSubmit(onFormSubmit, onError)}>
+         <form onSubmit={handleSubmit(onSucces, onError)}>
              <div className="form-wrapper">
              <h2>Register</h2>
              <div className='form-item'>
@@ -58,8 +57,6 @@ export const RegisterForm = () => {
                      name="firstName"
                      label="First name"
                      type="text"
-                     value={state.firstName}
-                     onChange={handleChange}
                      fieldRef={register({
                          required: {
                              value: true,
@@ -73,7 +70,6 @@ export const RegisterForm = () => {
                      name="lastName"
                      label="Last name"
                      type="text"
-                     onChange={handleChange}
                      fieldRef={register({
                          required: {
                              value: true,
@@ -87,7 +83,6 @@ export const RegisterForm = () => {
                          name="email"
                          label="Email"
                          type="text"
-                         onChange={handleChange}
                          fieldRef={register({
                              required: {
                                  value: true,
@@ -105,7 +100,6 @@ export const RegisterForm = () => {
                          name="password"
                          label="Password"
                          type="password"
-                         onChange={handleChange}
                          fieldRef={register({
                              required: {
                                  value: true,
@@ -119,7 +113,7 @@ export const RegisterForm = () => {
                      />
                  </div>
              <ButtonWrapper>
-                 <Button type="button" onClick={onFormSubmit}>Create account</Button>
+                 <Button >Create account</Button>
              </ButtonWrapper>
              </div>
          </form>
