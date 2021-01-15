@@ -33,7 +33,7 @@ export const Admin = () => {
                 <div className='user__container'>
                     {
                         clients.map((client) => {
-                            return <User key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email}></User>
+                            return <User key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email} id={client.id}></User>
                         })
                     }
                 </div>

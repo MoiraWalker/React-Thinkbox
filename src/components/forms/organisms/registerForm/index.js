@@ -19,7 +19,7 @@ export const RegisterForm = () => {
         lastName: "",
         email: "",
         password: "",
-    })
+    });
 
     const onError = (errorList) => {
         console.log(errorList)

@@ -1,13 +1,25 @@
 import './index.scss';
 import React from 'react';
+import axios from "axios";
 
 export const User = ( client ) => {
+
+    async function deleteUser(id) {
+        try {
+            console.log('client id ', client.id);
+            console.log('client id ', client);
+            const result = await axios.delete(`http://localhost:8080/clients/${id}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className="user__card">
             <h2>{client.firstName +" "+ client.lastName}</h2>
-            <p>{client.email}</p>
+            <p>{client[0]}</p>
             <div className="user__button-wrapper">
-                <button>X</button>
+                <button  onClick={() => deleteUser(client.id)}>x</button>
                 <button>E</button>
             </div>
         </div>
@@ -15,6 +27,4 @@ export const User = ( client ) => {
 }
 
 
-export const Button = ({ children, type = 'submit', onClick }) => (
-    <button className="button button--primary" type={type} onClick={onClick}>{children}</button>
-);
+
