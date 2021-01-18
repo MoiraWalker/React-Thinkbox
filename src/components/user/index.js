@@ -4,16 +4,6 @@ import axios from "axios";
 
 export const User = ({ id, email, isDeleted, firstName, lastName  })  => {
 
-
-    // async function getAllClients() {
-    //     try {
-    //         const result = await axios.get(`http://localhost:8080/clients`);
-    //         console.log('axios result: ', result);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
     async function deleteUser(id) {
         try {
             const result = await axios.delete(`http://localhost:8080/clients/${id}`);

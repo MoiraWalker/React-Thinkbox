@@ -33,6 +33,7 @@ export const RegisterForm = () => {
                 const result = axios.post(`http://localhost:8080/clients`, data);
                 console.log('added client: ', result);
                 setSubmitSuccess(true);
+                console.log("data", data);
                 history.push("/home");
             } catch (error) {
                 console.error(error);
@@ -113,7 +114,7 @@ export const RegisterForm = () => {
                      />
                  </div>
              <ButtonWrapper>
-                 <Button >Create account</Button>
+                 <Button>Create account</Button>
              </ButtonWrapper>
              </div>
          </form>

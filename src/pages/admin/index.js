@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export const Admin = () => {
-
     // axios
     const [clients, setClients] = useState([]);
     const [updateId, setUpdateId] = useState(null);
