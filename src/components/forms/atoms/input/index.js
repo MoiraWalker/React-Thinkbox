@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-export const Input = ({type, name, id, fieldRef, value, onChange}) => (
+export const Input = ({ type, name, id, fieldRef, value, onChange }) => (
     <input
         className="input"
         type={type}

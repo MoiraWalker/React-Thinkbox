@@ -1,12 +1,12 @@
-@import '../../styles/abstracts/variables';
-@import "../../styles/abstracts/mixins";
+@import '../../../styles/abstracts/variables';
+@import "../../../styles/abstracts/mixins";
 
 .user {
 
   &__card {
     background-color: $user-card;
     flex-basis: 400px;
-    height: 100px;
+    max-height: 500px;
     padding: 30px;
     margin-bottom: 20px;
     flex-grow: 1;

@@ -1,5 +1,5 @@
 import './index.scss';
-import { User } from "../../components/user";
+import { User } from "../../components/user/user";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -31,7 +31,13 @@ export const Admin = () => {
         }
     }
 
-    console.log(clients);
+    async function updateUser() {
+        try {
+            const result = await axios.put(`http://localhost:8080/clients`, {firstName: "test"});
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return(
         <div className='page__wrapper'>
