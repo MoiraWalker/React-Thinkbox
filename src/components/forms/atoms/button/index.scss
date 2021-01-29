@@ -31,4 +31,11 @@
       background-color: $button-secondary--hover;
     }
   }
+
+  &__icon {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 2rem 1.4rem 0 0;
+  }
 }

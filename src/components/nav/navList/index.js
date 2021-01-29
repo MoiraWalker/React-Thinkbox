@@ -1,5 +1,5 @@
 import './index.scss';
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BurgerBarContext } from "../../../context/burgerBarContextProvider";
 import { useContext } from 'react';
 

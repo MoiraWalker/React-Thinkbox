@@ -2,6 +2,9 @@ import './index.scss';
 import React, { useState } from 'react';
 import axios from "axios";
 import { UserEditForm } from "../../forms/organisms/userEditForm";
+import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
+import { ReactComponent as Edit } from '../../../assets/images/edit.svg';
+
 
 export const User = ({ id, email, setIsDeleted, setIsUpdated, firstName, lastName  })  => {
     const [ edit, toggleEdit ] = useState(false);
@@ -28,8 +31,12 @@ export const User = ({ id, email, setIsDeleted, setIsUpdated, firstName, lastNam
                     <h2>{firstName +" "+ lastName}</h2>
                     <p>{email}</p>
                     <div className="user__button-wrapper">
-                        <button onClick={() => deleteUser(id)}>x</button>
-                        <button onClick={editUser}>e</button>
+                        <button className="button__icon" onClick={() => deleteUser(id)}>
+                            <Delete/>
+                        </button>
+                        <button className="button__icon" onClick={editUser}>
+                            <Edit/>
+                        </button>
                     </div>
                 </div>
                 )
