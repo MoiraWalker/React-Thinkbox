@@ -3,15 +3,13 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { UserEditForm } from "../../forms/organisms/userEditForm";
 
-
-export const User = ({ id, email, isDeleted, firstName, lastName  })  => {
-    const [ userData, setUserData  ] = useState("");
+export const User = ({ id, email, setIsDeleted, setIsUpdated, firstName, lastName  })  => {
     const [ edit, toggleEdit ] = useState(false);
 
     async function deleteUser(id) {
         try {
             const result = await axios.delete(`http://localhost:8080/clients/${id}`);
-            isDeleted(id);
+            setIsDeleted(id);
         } catch (error) {
             console.error(error);
         }
@@ -24,7 +22,7 @@ export const User = ({ id, email, isDeleted, firstName, lastName  })  => {
     return (
         <div className="user__card">
             { edit ? (
-             <UserEditForm id={id} email={email} firstName={firstName} onCancel={edit => toggleEdit(false)}/>
+             <UserEditForm id={id} email={email} setIsUpdated={setIsUpdated} firstName={firstName} editOnFalse={ () => toggleEdit(false)}/>
             ) : (
                 <div>
                     <h2>{firstName +" "+ lastName}</h2>

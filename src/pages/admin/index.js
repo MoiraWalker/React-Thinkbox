@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const Admin = () => {
     const [clients, setClients] = useState([]);
-    const [updateId, setUpdateId] = useState(null);
+    const [isUpdated, setIsUpdated] = useState(null);
     const [isDeleted, setIsDeleted ] = useState(null);
 
     useEffect(() => {
@@ -17,14 +17,21 @@ export const Admin = () => {
             getAllClients();
             setIsDeleted(null);
         }
-        console.log(isDeleted);
     }, [isDeleted])
 
+    useEffect(() => {
+        if (isUpdated) {
+            getAllClients();
+            setIsUpdated(null);
+            console.log("is updated");
+        }
+    }, [isUpdated])
 
     async function getAllClients() {
         try {
             const result = await axios.get(`http://localhost:8080/clients`);
             setClients(result.data);
+            console.log("clients", clients);
         } catch (error) {
             console.error(error);
         }
@@ -38,7 +45,7 @@ export const Admin = () => {
                 <div className='user__container'>
                     {
                         clients.map((client) => {
-                            return <User isDeleted={setIsDeleted} key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email} id={client.id}></User>
+                            return <User setIsUpdated={setIsUpdated} setIsDeleted={setIsDeleted} key={client.email} firstName={client.firstName} lastName={client.lastName} email={client.email} id={client.id}></User>
                         })
                     }
                 </div>

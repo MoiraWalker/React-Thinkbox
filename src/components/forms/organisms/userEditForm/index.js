@@ -5,7 +5,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
 
-export const UserEditForm = ({ id, email, firstName, onCancel }) => {
+export const UserEditForm = ({ id, email, firstName, setIsUpdated, editOnFalse }) => {
     const { register, unregister, watch, reset, handleSubmit, ...methods } = useForm({
         mode: 'onChange'
     });
@@ -15,19 +15,18 @@ export const UserEditForm = ({ id, email, firstName, onCancel }) => {
     }
 
     async function updateUser(data) {
-        console.log(data);
-        console.log("id", id, "email", email);
         try {
             const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
+            setIsUpdated(true);
+            editOnFalse(false);
         } catch (error) {
             console.error(error);
         }
     }
 
-    // const onCancel = () => {
-    //    // window.location.reload(true);
-    //     toggleEdit(false);
-    // }
+    const onCancel = () => {
+        editOnFalse(false);
+    }
 
     return (
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
@@ -38,7 +37,6 @@ export const UserEditForm = ({ id, email, firstName, onCancel }) => {
                      name="firstName"
                      label="First name"
                      type="text"
-                     value="Klaas"
                      fieldRef={register({
                          required: {
                              value: true,
@@ -75,7 +73,7 @@ export const UserEditForm = ({ id, email, firstName, onCancel }) => {
                  </div>
              <ButtonWrapper>
                  <Button onClick={updateUser} className="button button__primary button__margin-right">Save</Button>
-                 <Button type="button" className="button button__secondary" onClick={()=> onCancel(false)}>Cancel</Button>
+                 <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
              </ButtonWrapper>
          </form>
      </FormProvider>
