@@ -4,9 +4,11 @@ import { Button } from '../../atoms';
 import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
+import { useState, useEffect } from 'react';
 
-export const UserEditForm = ({ id, email, firstName, setIsUpdated, editOnFalse }) => {
-    const { register, unregister, watch, reset, handleSubmit, ...methods } = useForm({
+export const UserEditForm = ({ id, email, firstName, lastName, setIsUpdated, editOnFalse }) => {
+    const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
+        defaultValues: { firstName: firstName, lastName: lastName, email: email},
         mode: 'onChange'
     });
 
