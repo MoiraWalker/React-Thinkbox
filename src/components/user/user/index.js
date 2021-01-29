@@ -24,7 +24,7 @@ export const User = ({ id, email, isDeleted, firstName, lastName  })  => {
     return (
         <div className="user__card">
             { edit ? (
-             <UserEditForm/>
+             <UserEditForm id={id} email={email} firstName={firstName} onCancel={edit => toggleEdit(false)}/>
             ) : (
                 <div>
                     <h2>{firstName +" "+ lastName}</h2>

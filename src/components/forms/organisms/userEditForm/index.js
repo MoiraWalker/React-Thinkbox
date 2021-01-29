@@ -2,34 +2,43 @@ import React from 'react';
 import { ButtonWrapper, InputField } from "../../molecules";
 import { Button } from '../../atoms';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useState, useEffect } from 'react';
 import './index.scss';
+import axios from "axios";
 
-export const UserEditForm = ({ id, email, isDeleted, firstName, lastName }) => {
+export const UserEditForm = ({ id, email, firstName, onCancel }) => {
     const { register, unregister, watch, reset, handleSubmit, ...methods } = useForm({
         mode: 'onChange'
     });
-
-    const [submitSuccess, setSubmitSuccess] = useState(false);
 
     const onError = (errorList) => {
         console.log(errorList)
     }
 
-    function onSucces() {
-        console.log("succes");
+    async function updateUser(data) {
+        console.log(data);
+        console.log("id", id, "email", email);
+        try {
+            const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    // const onCancel = () => {
+    //    // window.location.reload(true);
+    //     toggleEdit(false);
+    // }
 
     return (
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-         <form onSubmit={handleSubmit(onSucces, onError)}>
+         <form onSubmit={handleSubmit(updateUser, onError)}>
              <h2>Edit user</h2>
              <div className='form-item'>
                  <InputField
                      name="firstName"
                      label="First name"
                      type="text"
-                     value="klaas"
+                     value="Klaas"
                      fieldRef={register({
                          required: {
                              value: true,
@@ -65,8 +74,8 @@ export const UserEditForm = ({ id, email, isDeleted, firstName, lastName }) => {
                      />
                  </div>
              <ButtonWrapper>
-                 <Button>Save</Button>
-                 <Button className="button button__secondary">Cancel</Button>
+                 <Button onClick={updateUser} className="button button__primary button__margin-right">Save</Button>
+                 <Button type="button" className="button button__secondary" onClick={()=> onCancel(false)}>Cancel</Button>
              </ButtonWrapper>
          </form>
      </FormProvider>

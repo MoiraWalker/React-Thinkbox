@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export const Admin = () => {
-    // axios
     const [clients, setClients] = useState([]);
     const [updateId, setUpdateId] = useState(null);
     const [isDeleted, setIsDeleted ] = useState(null);
@@ -26,14 +25,6 @@ export const Admin = () => {
         try {
             const result = await axios.get(`http://localhost:8080/clients`);
             setClients(result.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function updateUser() {
-        try {
-            const result = await axios.put(`http://localhost:8080/clients`, {firstName: "test"});
         } catch (error) {
             console.error(error);
         }
