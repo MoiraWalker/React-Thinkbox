@@ -22,8 +22,9 @@ export const Admin = () => {
     useEffect(() => {
         if (isUpdated) {
             getAllClients();
+            setClients(sortClients(clients));
             setIsUpdated(null);
-            console.log("is updated");
+            getAllClients();
         }
     }, [isUpdated])
 
@@ -31,11 +32,17 @@ export const Admin = () => {
         try {
             const result = await axios.get(`http://localhost:8080/clients`);
             setClients(result.data);
-            console.log("clients", clients);
         } catch (error) {
             console.error(error);
         }
     }
+
+    const sortClients = (clients) => {
+        clients.sort(function (a, b) {
+            return a.id - b.id;
+        })
+    }
+
 
     return(
         <div className='page__wrapper'>
