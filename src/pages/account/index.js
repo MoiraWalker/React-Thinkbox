@@ -1,37 +1,28 @@
 import './index.scss';
-import { useState} from "react";
-import { Button } from "../../components/forms/atoms/button";
-import { ButtonWrapper } from "../../components/forms/molecules/buttonWrapper";
-
+import {useState} from "react";
+import {AccountEditForm} from "../../components/forms/organisms/accountEditForm";
+import {AccountInfo} from "../../components/accountInfo";
+import {AccountChangePasswordForm} from "../../components/forms/organisms/accountChangePasswordForm";
 
 export const Account = () => {
-    const [ edit, toggleEdit ] = useState(false);
+    const [activeComponent, setActiveComponent] = useState('show');
 
-    return(
+    const renderActiveComponent = () => {
+        const components = {
+            show: <AccountInfo setActiveComponent={setActiveComponent}/>,
+            edit: <AccountEditForm  setActiveComponent={setActiveComponent}/>,
+            password: <AccountChangePasswordForm setActiveComponent={setActiveComponent}/>,
+        }
+        return components[activeComponent]
+    }
+
+    return (
         <div className='page__wrapper'>
             <div className="page__container">
                 <h1 className="page__header">User name</h1>
-                { !edit ? (
-                        <div className="account">
-                            <div className="account__data">
-                                <div className="account__item">
-                                    <p className="account__label">Username</p>
-                                    <p className="account__info">MoiraWalker</p>
-                                </div>
-                                <div className="account__item">
-                                    <p className="account__label">Email</p>
-                                    <p className="account__info">moira.walker@test.nl</p>
-                                </div>
-                            </div>
-                            <div className="account__edit-wrapper">
-                                <div className="account__edit">Edit account</div>
-                                <div className="account__edit">Change password</div>
-                            </div>
-                                <Button className="button button__primary account__button-wrapper">Log out</Button>
-                        </div>
-                ) : (
-                    <h2>editted account</h2>
-                ) }
+                <div className="account__wrapper">
+                    { renderActiveComponent() }
+                </div>
             </div>
         </div>
     );

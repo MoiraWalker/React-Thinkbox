@@ -4,9 +4,8 @@ import { Button } from '../../atoms';
 import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
-import { useState, useEffect } from 'react';
 
-export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse }) => {
+export const AccountChangePasswordForm = ({ setActiveComponent, userName, email , id }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
         defaultValues: { userName: userName, email: email},
         mode: 'onChange'
@@ -19,15 +18,14 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
     async function updateAccount(data) {
         try {
             const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
-            setIsUpdated(true);
-            editOnFalse(false);
+            setActiveComponent(false);
         } catch (error) {
             console.error(error);
         }
     }
 
     const onCancel = () => {
-        editOnFalse(false);
+        setActiveComponent('show');
     }
 
     return (
@@ -35,22 +33,24 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
          <form onSubmit={handleSubmit(updateAccount, onError)}>
              <div className='form-item'>
                  <InputField
-                     name="userName"
-                     label="User name"
-                     type="text"
+                     className="label--light"
+                     name="password"
+                     label="Password"
+                     type="password"
                      fieldRef={register({
                          required: {
                              value: true,
-                             message: 'First name is required',
+                             message: 'password is required',
                          }
                      })}
                  />
              </div>
                  <div className='form-item'>
                      <InputField
-                         name="email"
-                         label="Email"
-                         type="text"
+                         className="label--light"
+                         name="repeat-password"
+                         label="Repeat password"
+                         type="password"
                          fieldRef={register({
                              required: {
                                  value: true,
@@ -60,7 +60,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
                      />
                  </div>
              <ButtonWrapper>
-                 <Button onClick={updateAccount} className="button button__primary button__margin-right">Save</Button>
+                 <Button onClick={updateAccount} className="button button__primary button__margin-right">Save Changes</Button>
                  <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
              </ButtonWrapper>
          </form>

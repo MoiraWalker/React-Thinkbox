@@ -22,10 +22,16 @@ export const RegisterForm = () => {
 
     const selectedReferrer = watch('role');
 
-    function onSucces(data) {
+    function onSuccess(data) {
+        const roles = {
+            user: ['user'],
+            admin: ['user', 'admin']
+        }
+        const formData = { ...data, role: roles[data.role]};
+
         try {
            // const result = axios.post(`http://localhost:8080/clients`, data);
-            const result = axios.post(`http://localhost:8080/api/auth/signup`, data);
+            const result = axios.post(`http://localhost:8080/api/auth/signup`, formData);
             setSubmitSuccess(true);
             console.log("data sign up", data);
             history.push("/login");
@@ -40,7 +46,7 @@ export const RegisterForm = () => {
     return (
         <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
             <div>
-                <form onSubmit={handleSubmit(onSucces, onError)}>
+                <form onSubmit={handleSubmit(onSuccess, onError)}>
                     <div className="form-wrapper">
                         <h2>Register</h2>
                         <div className='form-item'>

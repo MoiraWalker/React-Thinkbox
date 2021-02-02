@@ -2,10 +2,13 @@
 @import "../../styles/abstracts/mixins";
 
 .account {
-  width: 100%;
 
-  @include breakpoint(screen-l) {
-    width:50%;
+  &__wrapper {
+    width: 100%;
+
+    @include breakpoint(screen-l) {
+      width:50%;
+    }
   }
 
   &__item{
