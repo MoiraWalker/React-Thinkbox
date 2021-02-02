@@ -1,0 +1,45 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+.account {
+  width: 100%;
+
+  @include breakpoint(screen-l) {
+    width:50%;
+  }
+
+  &__item{
+    margin: 1rem 0;
+  }
+
+  &__label{
+    color: white;
+    padding: 1rem 0;
+  }
+
+  &__info{
+    background-color: $form-color-dark;
+    color: white;
+    padding: 1.5rem;
+    height:20px;
+
+  }
+
+  &__edit {
+    color: white;
+    width: fit-content;
+    border-bottom: white 0.2rem solid;
+    padding: 0.2rem;
+  }
+
+  &__edit-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+
+  &__button-wrapper {
+    margin-top: 5rem;
+  }
+
+}

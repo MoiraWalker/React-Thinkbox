@@ -28,7 +28,9 @@ export const Admin = () => {
 
     async function getAllClients() {
         try {
-            const result = await axios.get(`http://localhost:8080/clients`);
+            // const result = await axios.get(`http://localhost:8080/clients`);
+            const result = await axios.get(`http://localhost:8080/api/test/all`);
+            console.log("users", result);
             setClients(result.data.sort(function (a, b) {
                 return a.id - b.id;
             }));

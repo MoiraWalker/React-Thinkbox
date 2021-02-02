@@ -1,6 +1,6 @@
 import React from 'react';
-import {ButtonWrapper, InputField} from "../../molecules";
-import {Button} from '../../atoms';
+import {ButtonWrapper, InputField, SelectBox } from "../../molecules";
+import {Button, SelectOption } from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
 import {useState, useEffect} from 'react';
 import './index.scss';
@@ -20,16 +20,22 @@ export const RegisterForm = () => {
 
     let history = useHistory();
 
+    const selectedReferrer = watch('role');
+
     function onSucces(data) {
         try {
-            const result = axios.post(`http://localhost:8080/clients`, data);
+           // const result = axios.post(`http://localhost:8080/clients`, data);
+            const result = axios.post(`http://localhost:8080/api/auth/signup`, data);
             setSubmitSuccess(true);
-            console.log("data", data);
+            console.log("data sign up", data);
             history.push("/login");
         } catch (error) {
             console.error(error);
         }
     }
+
+    const user = ["user"];
+    const admin = ["user", "admin"];
 
     return (
         <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
@@ -39,26 +45,13 @@ export const RegisterForm = () => {
                         <h2>Register</h2>
                         <div className='form-item'>
                             <InputField
-                                name="firstName"
-                                label="First name"
+                                name="username"
+                                label="userName"
                                 type="text"
                                 fieldRef={register({
                                     required: {
                                         value: true,
                                         message: 'First name is required',
-                                    }
-                                })}
-                            />
-                        </div>
-                        <div className='form-item'>
-                            <InputField
-                                name="lastName"
-                                label="Last name"
-                                type="text"
-                                fieldRef={register({
-                                    required: {
-                                        value: true,
-                                        message: 'Last name is required',
                                     }
                                 })}
                             />
@@ -96,6 +89,22 @@ export const RegisterForm = () => {
                                     }
                                 })}
                             />
+                        </div>
+                        <div className="form-item">
+                            <SelectBox
+                                name="role"
+                                label="role"
+                                id="role"
+                                fieldRef={register({
+                                    required: {
+                                        value: true,
+                                        message: 'Last name is required',
+                                    }
+                                })}
+                            >
+                                <SelectOption name="role" value={["user"]}>User</SelectOption>
+                                <SelectOption name="role" value={["user", "admin"]}>Admin</SelectOption>
+                            </SelectBox>
                         </div>
                         <ButtonWrapper>
                             <Button>Create account</Button>

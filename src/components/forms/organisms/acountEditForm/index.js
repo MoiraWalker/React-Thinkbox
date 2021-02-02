@@ -16,7 +16,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
         console.log(errorList)
     }
 
-    async function updateUser(data) {
+    async function updateAccount(data) {
         try {
             const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
             setIsUpdated(true);
@@ -32,8 +32,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
 
     return (
      <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-         <form onSubmit={handleSubmit(updateUser, onError)}>
-             <h2>Edit user</h2>
+         <form onSubmit={handleSubmit(updateAccount, onError)}>
              <div className='form-item'>
                  <InputField
                      name="userName"
@@ -42,7 +41,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
                      fieldRef={register({
                          required: {
                              value: true,
-                             message: 'Last name is required',
+                             message: 'First name is required',
                          }
                      })}
                  />
@@ -61,7 +60,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
                      />
                  </div>
              <ButtonWrapper>
-                 <Button onClick={updateUser} className="button button__primary button__margin-right">Save</Button>
+                 <Button onClick={updateAccount} className="button button__primary button__margin-right">Save</Button>
                  <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
              </ButtonWrapper>
          </form>
