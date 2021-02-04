@@ -1,5 +1,5 @@
 import './App.scss';
-import { Routes }  from './routes';
+import { Routes }  from './routing/routes';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { NavBar} from "./components/nav/navbar";
 import BurgerBarContextProvider from "./context/burgerBarContextProvider";

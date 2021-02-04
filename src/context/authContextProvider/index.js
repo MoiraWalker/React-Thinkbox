@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import {useHistory} from "react-router-dom";
+
 
 const AuthContext = createContext({});
 
@@ -9,6 +11,8 @@ function AuthContextProvider({ children }) {
     error: null,
     user: null,
   })
+
+  const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -79,13 +83,12 @@ function AuthContextProvider({ children }) {
   }
 
   function logout() {
-    // 1. Maak local storage leeg
     localStorage.clear();
-    // 2. Haal de user uit de context-state
     setAuthState({
       ...authState,
       user: null,
     })
+    history.push('/login');
   }
 
   // als je hem helemaal uit zou schrijven en als variabele mee zou geven aan AuthContext.Provider:

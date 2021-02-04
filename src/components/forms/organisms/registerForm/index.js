@@ -8,7 +8,7 @@ import {useHistory} from "react-router-dom";
 import axios from "axios";
 
 export const RegisterForm = () => {
-    const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
+    const {register, unregister, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
 
@@ -19,8 +19,6 @@ export const RegisterForm = () => {
     }
 
     let history = useHistory();
-
-    const selectedReferrer = watch('role');
 
     function onSuccess(data) {
         const roles = {
@@ -40,7 +38,7 @@ export const RegisterForm = () => {
     }
     
     return (
-        <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+        <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
             <div>
                 <form onSubmit={handleSubmit(onSuccess, onError)}>
                     <div className="form-wrapper">

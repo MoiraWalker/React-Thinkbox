@@ -1,9 +1,12 @@
 import './index.scss';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Button} from "../forms/atoms/button";
+import {AuthContext, useAuthState} from "../../context/authContextProvider";
 
 
 export const AccountInfo = ({ setActiveComponent  })  => {
+    const { logout } = useContext(AuthContext);
+    const { isAuthenticated } = useAuthState();
 
     const editUser = () => {
         setActiveComponent('edit');
@@ -29,7 +32,7 @@ export const AccountInfo = ({ setActiveComponent  })  => {
                 <div className="account__edit" onClick={editUser}>Edit account</div>
                 <div className="account__edit" onClick={changePassword}>Change password</div>
             </div>
-            <Button className="button button__primary account__button-wrapper">Log out</Button>
+            <Button type='button' onClick={() => logout()} className="button button__primary account__button-wrapper">Log out</Button>
         </div>
     );
 }
