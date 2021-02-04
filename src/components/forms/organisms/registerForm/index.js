@@ -30,7 +30,6 @@ export const RegisterForm = () => {
         const formData = { ...data, role: roles[data.role]};
 
         try {
-           // const result = axios.post(`http://localhost:8080/clients`, data);
             const result = axios.post(`http://localhost:8080/api/auth/signup`, formData);
             setSubmitSuccess(true);
             console.log("data sign up", data);
@@ -39,10 +38,7 @@ export const RegisterForm = () => {
             console.error(error);
         }
     }
-
-    const user = ["user"];
-    const admin = ["user", "admin"];
-
+    
     return (
         <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
             <div>
@@ -90,7 +86,8 @@ export const RegisterForm = () => {
                                         message: 'Password name is required',
                                     },
                                     pattern: {
-                                        value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/,
+                                        // value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/,
+                                        value: true,
                                         message: 'Password is not strong enough. Password should contain, special character, capital letter, number and have a minimum length of 8 characters.'
                                     }
                                 })}
