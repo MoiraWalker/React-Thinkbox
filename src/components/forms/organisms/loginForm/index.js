@@ -6,40 +6,30 @@ import { useState, useEffect } from 'react';
 import './index.scss';
 import {NavLink, useHistory} from "react-router-dom";
 import { LinkWrapper } from "../../molecules/linkWrapper";
-import close from "../../../../assets/images/close.svg";
 
 
 export const LoginForm = () => {
-    const { register, unregister, watch, reset, handleSubmit, ...methods } = useForm({
+    const { register, handleSubmit, ...methods } = useForm({
         mode: 'onChange'
     });
-    const [sumbitSuccess, setSubmitSuccess] = useState(false);
 
-    let history = useHistory();
-
-    function handleClick() {
-        history.push("/home");
-    }
+    // let history = useHistory();
+    // function handleClick() {
+    //     history.push("/home");
+    // }
 
     function onFormSubmit(data, e) {
-        setSubmitSuccess(true);
         console.log(data);
         e.target.reset();
-    }
-
-    function onToaster(data) {
-        setSubmitSuccess(false);
-        console.log("toaster");
     }
 
     const onError = (errorList) => {
         console.log(errorList)
     }
 
-    const selectedReferrer = watch('pets');
 
  return (
-     <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+     <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
          <form onSubmit={handleSubmit(onFormSubmit, onError)}>
              <div className="form-wrapper">
              <h3>Login</h3>
@@ -72,7 +62,7 @@ export const LoginForm = () => {
 
              </div>
              <ButtonWrapper>
-                 <Button type="button" onClick={handleClick}>Submit</Button>
+                 <Button type="submit">Submit</Button>
              </ButtonWrapper>
                  <LinkWrapper>
                     <NavLink to="/register" exact activeClassName="link--active" className="link">Create account</NavLink>
