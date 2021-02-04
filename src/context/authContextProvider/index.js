@@ -64,10 +64,7 @@ function AuthContextProvider({ children }) {
   }, []);
 
   function login(data) {
-    // 1. de token willen we in de local storage zetten
     localStorage.setItem('token', data.accessToken);
-
-    // 2. de user-informatie willen we in de context zetten
     setAuthState({
       ...authState,
       user: {
