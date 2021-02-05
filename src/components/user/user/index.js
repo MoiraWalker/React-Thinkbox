@@ -6,12 +6,12 @@ import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
 import { ReactComponent as Edit } from '../../../assets/images/edit.svg';
 
 
-export const User = ({ id, email, setIsDeleted, setIsUpdated, firstName, lastName  })  => {
+export const User = ({ id, email, setIsDeleted, setIsUpdated, username  })  => {
     const [ edit, toggleEdit ] = useState(false);
 
     async function deleteUser(id) {
         try {
-            const result = await axios.delete(`http://localhost:8080/clients/${id}`);
+            const result = await axios.delete(`http://localhost:8080/api/users/${id}`);
             setIsDeleted(id);
         } catch (error) {
             console.error(error);
@@ -25,10 +25,10 @@ export const User = ({ id, email, setIsDeleted, setIsUpdated, firstName, lastNam
     return (
         <div className="user__card">
             { edit ? (
-             <UserEditForm id={id}  firstName={firstName} lastName={lastName} setIsUpdated={setIsUpdated}  editOnFalse={ () => toggleEdit(false)}/>
+             <UserEditForm id={id}  username={username} email={email} setIsUpdated={setIsUpdated}  editOnFalse={ () => toggleEdit(false)}/>
             ) : (
                 <div>
-                    <h2>{firstName +" "+ lastName}</h2>
+                    <h2>{username}</h2>
                     <p>{email}</p>
                     <div className="user__button-wrapper">
                         <button className="button__icon" onClick={() => deleteUser(id)}>

@@ -6,9 +6,9 @@ import './index.scss';
 import axios from "axios";
 import { useState, useEffect } from 'react';
 
-export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse }) => {
+export const UserEditForm = ({ id, email, username, setIsUpdated, editOnFalse }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
-        defaultValues: { userName: userName, email: email},
+        defaultValues: { username: username, email: email },
         mode: 'onChange'
     });
 
@@ -18,7 +18,7 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
 
     async function updateUser(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
+            const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
             setIsUpdated(true);
             editOnFalse(false);
         } catch (error) {
@@ -36,13 +36,13 @@ export const UserEditForm = ({ id, email, userName, setIsUpdated, editOnFalse })
              <h2>Edit user</h2>
              <div className='form-item'>
                  <InputField
-                     name="userName"
+                     name="username"
                      label="User name"
                      type="text"
                      fieldRef={register({
                          required: {
                              value: true,
-                             message: 'Last name is required',
+                             message: 'User name is required',
                          }
                      })}
                  />

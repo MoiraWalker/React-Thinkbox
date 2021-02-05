@@ -17,8 +17,9 @@ export const AccountEditForm = ({ setActiveComponent, userName, email, id  }) =>
 
     async function updateAccount(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
+            const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
             setActiveComponent(false);
+            console.log("data", data);
         } catch (error) {
             console.error(error);
         }

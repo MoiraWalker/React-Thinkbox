@@ -4,34 +4,33 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export const Admin = () => {
-    const [clients, setClients] = useState([]);
+    const [users, setUsers] = useState([]);
     const [isUpdated, setIsUpdated] = useState(null);
     const [isDeleted, setIsDeleted] = useState(null);
 
     useEffect(() => {
-        getAllClients();
+        getAllUsers();
     }, [])
 
     useEffect(() => {
         if (isDeleted) {
-            getAllClients();
+            getAllUsers();
             setIsDeleted(null);
         }
     }, [isDeleted])
 
     useEffect(() => {
         if (isUpdated) {
-            getAllClients();
+            getAllUsers();
             setIsUpdated(null);
         }
     }, [isUpdated])
 
-    async function getAllClients() {
+    async function getAllUsers() {
         try {
-            // const result = await axios.get(`http://localhost:8080/clients`);
-            const result = await axios.get(`http://localhost:8080/api/test/all`);
+            const result = await axios.get(`http://localhost:8080/api/users`);
             console.log("users", result);
-            setClients(result.data.sort(function (a, b) {
+            setUsers(result.data.sort(function (a, b) {
                 return a.id - b.id;
             }));
         } catch (error) {
@@ -43,13 +42,13 @@ export const Admin = () => {
         <div className='page__wrapper'>
             <div className="page__container">
                 <h1 className="page__header">Admin</h1>
-                {clients &&
+                {users &&
                 <div className='user__container'>
                     {
-                        clients.map((client) => {
-                            return <User setIsUpdated={setIsUpdated} setIsDeleted={setIsDeleted} key={client.email}
-                                         firstName={client.firstName} lastName={client.lastName} email={client.email}
-                                         id={client.id}></User>
+                        users.map((user) => {
+                            return <User setIsUpdated={setIsUpdated} setIsDeleted={setIsDeleted} key={user.email}
+                                         username={user.username} email={user.email}
+                                         id={user.id}></User>
                         })
                     }
                 </div>
