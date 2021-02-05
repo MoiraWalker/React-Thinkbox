@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
 
-
 const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
@@ -10,7 +9,9 @@ function AuthContextProvider({ children }) {
     status: 'pending',
     error: null,
     user: null,
+    admin: false,
   })
+
 
   const history = useHistory();
 
@@ -37,6 +38,7 @@ function AuthContextProvider({ children }) {
             id: response.id,
             username: response.username,
             email: response.email,
+            roles: response.roles.name,
           },
           status: 'done',
         });
@@ -47,7 +49,8 @@ function AuthContextProvider({ children }) {
           ...authState,
           user: null,
           error: e,
-          status: 'done'
+          status: 'done',
+          roles: null,
         });
       }
     }
@@ -62,7 +65,8 @@ function AuthContextProvider({ children }) {
         ...authState,
         error: null,
         user: null,
-        status: 'done'
+        status: 'done',
+        roles: null,
       });
     }
   }, []);
@@ -77,6 +81,8 @@ function AuthContextProvider({ children }) {
         roles: data.roles,
       }
     })
+
+    console.log("user", data.roles);
 
     // 3. als dat allemaal gelukt is, willen we doorgelinkt worden naar de profielpagina!
     // Dit doen we in het component dat deze functie aanroept, zelf!

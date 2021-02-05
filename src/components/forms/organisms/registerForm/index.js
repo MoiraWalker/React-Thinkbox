@@ -21,7 +21,7 @@ export const RegisterForm = () => {
     function onSuccess(data) {
         const roles = {
             user: ['user'],
-            admin: ['user', 'admin']
+            admin: ['admin']
         }
         const formData = {...data, role: roles[data.role]};
 
