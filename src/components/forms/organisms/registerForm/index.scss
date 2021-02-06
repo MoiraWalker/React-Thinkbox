@@ -12,13 +12,4 @@
     &__message{
         font-size: 1.8rem;
     }
-
-    &__link {
-        border-bottom: solid 0.3rem $login-link-color;
-        padding-bottom: 0.1rem;
-        text-decoration: none;
-        margin: 0 0.3rem;
-        font-weight: 500;
-        color: $login-link-color;
-    }
 }

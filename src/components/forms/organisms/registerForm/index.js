@@ -45,71 +45,72 @@ export const RegisterForm = () => {
             {createUserSuccess ? (
                 <div className="success__wrapper">
                     <h2>Account registered succesfully! 🥳</h2>
-                    <p className="success__message">Click<NavLink className="success__message success__link" to="/login">here</NavLink>to log in</p>
+                    <p className="success__message">Click
+                        <NavLink className="success__message link" activeClassName="link--active" to="/login">here</NavLink>to log in</p>
                 </div>
             ) : (
-            <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
-                <div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-wrapper">
-                            <h2>Register</h2>
-                            <div className='form-item'>
-                                <InputField
-                                    name="username"
-                                    label="Username"
-                                    type="text"
-                                    fieldRef={register({
-                                        required: {
-                                            value: true,
-                                            message: 'First name is required',
-                                        }
-                                    })}
-                                />
+                <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
+                    <div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-wrapper">
+                                <h2>Register</h2>
+                                <div className='form-item'>
+                                    <InputField
+                                        name="username"
+                                        label="Username"
+                                        type="text"
+                                        fieldRef={register({
+                                            required: {
+                                                value: true,
+                                                message: 'First name is required',
+                                            }
+                                        })}
+                                    />
+                                </div>
+                                <div className='form-item'>
+                                    <InputField
+                                        name="email"
+                                        label="Email"
+                                        type="text"
+                                        fieldRef={register({
+                                            required: {
+                                                value: true,
+                                                message: 'Email name is required',
+                                            },
+                                            pattern: {
+                                                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                                                message: 'The given email adress is not valid'
+                                            }
+                                        })}
+                                    />
+                                </div>
+                                <div className='form-item'>
+                                    <InputField
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        fieldRef={register({
+                                            required: {
+                                                value: true,
+                                                message: 'Password name is required',
+                                            },
+                                            pattern: {
+                                                // value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/,
+                                                value: true,
+                                                message: 'Password is not strong enough. Password should contain, special character, capital letter, number and have a minimum length of 8 characters.'
+                                            }
+                                        })}
+                                    />
+                                </div>
+                                {error && <p className="error-message">{error}</p>}
+                                <ButtonWrapper>
+                                    <Button>Create account</Button>
+                                </ButtonWrapper>
                             </div>
-                            <div className='form-item'>
-                                <InputField
-                                    name="email"
-                                    label="Email"
-                                    type="text"
-                                    fieldRef={register({
-                                        required: {
-                                            value: true,
-                                            message: 'Email name is required',
-                                        },
-                                        pattern: {
-                                            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                                            message: 'The given email adress is not valid'
-                                        }
-                                    })}
-                                />
-                            </div>
-                            <div className='form-item'>
-                                <InputField
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    fieldRef={register({
-                                        required: {
-                                            value: true,
-                                            message: 'Password name is required',
-                                        },
-                                        pattern: {
-                                            // value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/,
-                                            value: true,
-                                            message: 'Password is not strong enough. Password should contain, special character, capital letter, number and have a minimum length of 8 characters.'
-                                        }
-                                    })}
-                                />
-                            </div>
-                            {error && <p className="error-message">{error}</p>}
-                            <ButtonWrapper>
-                                <Button>Create account</Button>
-                            </ButtonWrapper>
-                        </div>
-                    </form>
-                </div>
-            </FormProvider>
-                )}
+                        </form>
+                    </div>
+                </FormProvider>
+            )}
         </div>
     );
 }

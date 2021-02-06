@@ -40,9 +40,16 @@ button {
 
 .link {
   color: $link-color;
-  padding-bottom: 1rem;
-  text-decoration: underline;
+  text-decoration: none;
+  margin: 0 0.5rem 0.1rem 0.5rem;
+  border-bottom: solid 0.3rem $link-color;
+  font-weight: 500;
 }
+
+.link--active {
+  color: green;
+}
+
 
 p {
   padding: 0;
