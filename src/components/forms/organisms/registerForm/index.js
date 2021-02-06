@@ -31,9 +31,9 @@ export const RegisterForm = () => {
         } catch (e) {
             console.error(e);
             if (e.message.includes('400')) {
-                setError('Er bestaat al een account met deze gebruikersnaam');
+                setError('Username and or email adress are already in use');
             } else {
-                setError('Er is iets misgegaan bij het verzenden. Probeer het opnieuw');
+                setError('Something went wrong, please try gain');
             }
         }
     }
@@ -94,7 +94,7 @@ export const RegisterForm = () => {
                                     })}
                                 />
                             </div>
-                            {error && <p>{error}</p>}
+                            {error && <p className="error-message">{error}</p>}
                             <ButtonWrapper>
                                 <Button>Create account</Button>
                             </ButtonWrapper>
