@@ -1,15 +1,24 @@
 @import '../../../../styles/abstracts/variables';
 
 .success {
-    &__container {
-        background-color: #b2ffeb;
-        width: 100%;
-        padding: 1rem;
+    &__wrapper {
+        display: flex;
+        background-color: $window-color;
+        flex-direction: column;
+        width: 350px;
+        padding: 3rem 3rem 5rem 3rem;
     }
-    &__message {
-        font-size: 1rem;
+
+    &__message{
+        font-size: 1.8rem;
     }
+
     &__link {
-        color: #5ce8c3;
+        border-bottom: solid 0.3rem $login-link-color;
+        padding-bottom: 0.1rem;
+        text-decoration: none;
+        margin: 0 0.3rem;
+        font-weight: 500;
+        color: $login-link-color;
     }
 }

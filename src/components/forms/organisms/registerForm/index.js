@@ -43,9 +43,9 @@ export const RegisterForm = () => {
     return (
         <div>
             {createUserSuccess ? (
-                <div className="success__container">
-                    <div className="success__message">Account registered succesfully! CLick
-                        <NavLink className="success__link" to="/login">here</NavLink> to log in</div>
+                <div className="success__wrapper">
+                    <h2>Account registered succesfully! 🥳</h2>
+                    <p className="success__message">Click<NavLink className="success__message success__link" to="/login">here</NavLink>to log in</p>
                 </div>
             ) : (
             <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
