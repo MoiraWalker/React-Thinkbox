@@ -1,45 +1,35 @@
 import React from 'react';
-import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
-import {Button, SelectOption} from '../../atoms';
-import {useForm, FormProvider} from 'react-hook-form';
-import {useState} from 'react';
+import { ButtonWrapper, InputField } from "../../molecules";
+import { Button } from '../../atoms';
+import { useForm, FormProvider } from 'react-hook-form';
+import { useState } from 'react';
 import './index.scss';
-import {useHistory} from "react-router-dom";
 import axios from "axios";
-import {NavLink} from "react-router-dom";
-import {LinkWrapper} from "../../molecules/linkWrapper";
-
+import { NavLink } from "react-router-dom";
+import { LinkWrapper } from "../../molecules/linkWrapper";
 
 export const RegisterForm = () => {
-    const {register, unregister, reset, handleSubmit, ...methods} = useForm({
+    const {register, unregister, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
     const [createUserSuccess, setCreateUserSuccess] = useState(false);
-    const [submitSuccess, setSubmitSuccess] = useState(false);
     const [error, setError] = useState('');
-
-    let history = useHistory();
 
     async function onSubmit(data) {
         setError('');
-
         try {
             const response = await axios.post('http://localhost:8080/api/auth/signup', data);
-            console.log(response.data);
-
             if (response.status === 200) {
                 setCreateUserSuccess(true);
             }
         } catch (e) {
-            console.error(e);
             if (e.message.includes('400')) {
                 setError('Username and or email adress are already in use');
             } else {
-                setError('Something went wrong, please try gain');
+                setError('Something went wrong, please try again');
             }
         }
     }
-
 
     return (
         <div>

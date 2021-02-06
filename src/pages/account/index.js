@@ -6,16 +6,13 @@ import {AccountChangePasswordForm} from "../../components/forms/organisms/accoun
 import { useAuthState } from "../../context/authContextProvider";
 import axios  from "axios";
 
-
 export const Account = () => {
     const [activeComponent, setActiveComponent] = useState('show');
     const { user } = useAuthState();
-    const [error, setError] = useState('');
     const [protectedData, setProtectedData] = useState('');
 
     useEffect(() => {
         async function getProtectedData() {
-            setError('');
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.get('http://localhost:8080/api/user', {
@@ -26,7 +23,7 @@ export const Account = () => {
                 });
                 setProtectedData(response.data);
             } catch(e) {
-                setError('Er is iets misgegaan bij het ophalen van de data')
+                console.log(e);
             }
         }
         getProtectedData();

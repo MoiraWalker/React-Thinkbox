@@ -11,15 +11,10 @@ export const AccountEditForm = ({ setActiveComponent, username, email, id  }) =>
         mode: 'onChange'
     });
 
-    const onError = (errorList) => {
-        console.log(errorList)
-    }
-
     async function updateAccount(data) {
         try {
             const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
             setActiveComponent(false);
-            console.log("data", data);
         } catch (error) {
             console.error(error);
         }
@@ -27,6 +22,10 @@ export const AccountEditForm = ({ setActiveComponent, username, email, id  }) =>
 
     const onCancel = () => {
         setActiveComponent('show');
+    }
+
+    const onError = (errorList) => {
+        console.log(errorList)
     }
 
     return (
