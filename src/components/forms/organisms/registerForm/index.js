@@ -1,14 +1,11 @@
 import React from 'react';
-import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
-import {Button, SelectOption} from '../../atoms';
-import {useForm, FormProvider} from 'react-hook-form';
-import {useState, useEffect} from 'react';
+import { ButtonWrapper, InputField, SelectBox } from "../../molecules";
+import { Button, SelectOption } from '../../atoms';
+import { useForm, FormProvider } from 'react-hook-form';
+import {useState } from 'react';
 import './index.scss';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-import {AccountInfo} from "../../../accountInfo";
-import {AccountEditForm} from "../accountEditForm";
-import {AccountChangePasswordForm} from "../accountChangePasswordForm";
 
 export const RegisterForm = () => {
     const {register, unregister, reset, handleSubmit, ...methods} = useForm({
@@ -19,14 +16,8 @@ export const RegisterForm = () => {
     let history = useHistory();
 
     function onSuccess(data) {
-        const roles = {
-            user: ['user'],
-            admin: ['admin']
-        }
-        const formData = {...data, role: roles[data.role]};
-
         try {
-            const result = axios.post(`http://localhost:8080/api/auth/signup`, formData);
+            const result = axios.post(`http://localhost:8080/api/auth/signup`, data);
             setSubmitSuccess(true);
             console.log("data sign up", data);
             history.push("/login");
@@ -103,22 +94,6 @@ export const RegisterForm = () => {
                                         }
                                     })}
                                 />
-                            </div>
-                            <div className="form-item">
-                                <SelectBox
-                                    name="role"
-                                    label="role"
-                                    id="role"
-                                    fieldRef={register({
-                                        required: {
-                                            value: true,
-                                            message: 'Last name is required',
-                                        }
-                                    })}
-                                >
-                                    <SelectOption name="role">User</SelectOption>
-                                    <SelectOption name="role">Admin</SelectOption>
-                                </SelectBox>
                             </div>
                             <ButtonWrapper>
                                 <Button>Create account</Button>
