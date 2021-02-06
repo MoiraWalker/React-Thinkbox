@@ -1,11 +1,12 @@
 import React from 'react';
-import { ButtonWrapper, InputField, SelectBox } from "../../molecules";
-import { Button, SelectOption } from '../../atoms';
-import { useForm, FormProvider } from 'react-hook-form';
-import {useState } from 'react';
+import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
+import {Button, SelectOption} from '../../atoms';
+import {useForm, FormProvider} from 'react-hook-form';
+import {useState} from 'react';
 import './index.scss';
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
+
 
 export const RegisterForm = () => {
     const {register, unregister, reset, handleSubmit, ...methods} = useForm({
@@ -13,44 +14,42 @@ export const RegisterForm = () => {
     });
     const [createUserSuccess, setCreateUserSuccess] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [error, setError] = useState('');
+
     let history = useHistory();
 
-    function onSuccess(data) {
+    async function onSubmit(data) {
+        setError('');
+
         try {
-            const result = axios.post(`http://localhost:8080/api/auth/signup`, data);
-            setSubmitSuccess(true);
-            console.log("data sign up", data);
-            history.push("/login");
+            const response = await axios.post('http://localhost:8080/api/auth/signup', data);
+            console.log(response.data);
 
-            if (result.status === 200) {
+            if (response.status === 200) {
                 setCreateUserSuccess(true);
-            } else if (result.status === 401) {
-                console.log("401");
             }
-            if (data.userName == "") {
-                console.log("empty!");
+        } catch (e) {
+            console.error(e);
+            if (e.message.includes('400')) {
+                setError('Er bestaat al een account met deze gebruikersnaam');
+            } else {
+                setError('Er is iets misgegaan bij het verzenden. Probeer het opnieuw');
             }
-
-        } catch (error) {
-            console.error(error);
         }
     }
 
-    const onError = (errorList) => {
-        console.log(errorList)
-    }
 
     return (
         <div>
             <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
                 <div>
-                    <form onSubmit={handleSubmit(onSuccess, onError)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-wrapper">
                             <h2>Register</h2>
                             <div className='form-item'>
                                 <InputField
                                     name="username"
-                                    label="userName"
+                                    label="Username"
                                     type="text"
                                     fieldRef={register({
                                         required: {
@@ -95,6 +94,7 @@ export const RegisterForm = () => {
                                     })}
                                 />
                             </div>
+                            {error && <p>{error}</p>}
                             <ButtonWrapper>
                                 <Button>Create account</Button>
                             </ButtonWrapper>
