@@ -1,12 +1,12 @@
 import './index.scss';
-import React, { useState, useContext } from 'react';
+import React, {useContext} from 'react';
 import {Button} from "../forms/atoms/button";
 import {AuthContext, useAuthState} from "../../context/authContextProvider";
 
 
-export const AccountInfo = ({ setActiveComponent  })  => {
-    const { logout } = useContext(AuthContext);
-    const { isAuthenticated } = useAuthState();
+export const AccountInfo = ({setActiveComponent, username, email}) => {
+    const {logout} = useContext(AuthContext);
+    const {isAuthenticated} = useAuthState();
 
     const editUser = () => {
         setActiveComponent('edit');
@@ -21,11 +21,11 @@ export const AccountInfo = ({ setActiveComponent  })  => {
             <div className="account__data">
                 <div className="account__item">
                     <p className="account__label">Username</p>
-                    <p className="account__info">MoiraWalker</p>
+                    <p className="account__info">{username}</p>
                 </div>
                 <div className="account__item">
                     <p className="account__label">Email</p>
-                    <p className="account__info">moira.walker@test.nl</p>
+                    <p className="account__info">{email}</p>
                 </div>
             </div>
             <div className="account__edit-wrapper">

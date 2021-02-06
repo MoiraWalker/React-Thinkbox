@@ -5,9 +5,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
 
-export const AccountEditForm = ({ setActiveComponent, userName, email, id  }) => {
+export const AccountEditForm = ({ setActiveComponent, username, email, id  }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
-        defaultValues: { userName: userName, email: email},
+        defaultValues: { username: username, email: email},
         mode: 'onChange'
     });
 
@@ -35,7 +35,7 @@ export const AccountEditForm = ({ setActiveComponent, userName, email, id  }) =>
              <div className='form-item'>
                  <InputField
                      className="label--light"
-                     name="userName"
+                     name="username"
                      label="User name"
                      type="text"
                      fieldRef={register({

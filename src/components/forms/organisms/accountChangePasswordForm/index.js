@@ -5,9 +5,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
 
-export const AccountChangePasswordForm = ({ setActiveComponent, userName, email , id }) => {
+export const AccountChangePasswordForm = ({ setActiveComponent, id }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
-        defaultValues: { userName: userName, email: email},
         mode: 'onChange'
     });
 
