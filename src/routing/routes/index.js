@@ -1,7 +1,7 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {Login, Project, Projects, Admin, Register, Account} from '../../pages';
-import {PrivateRoute} from "../privateRoute";
+import { Switch, Route } from 'react-router-dom';
+import { Login, Project, Projects, Admin, Register, Account } from '../../pages';
+import { PrivateRoute } from "../privateRoute";
 
 export const Routes = () => {
     return (

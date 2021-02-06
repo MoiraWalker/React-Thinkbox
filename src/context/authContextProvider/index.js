@@ -5,15 +5,12 @@ import {useHistory} from "react-router-dom";
 const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
+  const history = useHistory();
   const [authState, setAuthState] = useState({
     status: 'pending',
     error: null,
     user: null,
-    admin: false,
   })
-
-
-  const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -21,12 +18,12 @@ function AuthContextProvider({ children }) {
     async function getUserInfo() {
       try {
         // We kunnen de gebruikersdata ophalen omdat we onszelf authenticeren met de token
-        const response = await axios.get('http://localhost:8080/api/user', {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axios.get('https://polar-lake-14365.herokuapp.com/api/user', {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
         );
 
         console.log(response);
@@ -38,7 +35,6 @@ function AuthContextProvider({ children }) {
             id: response.id,
             username: response.username,
             email: response.email,
-            roles: response.roles.name,
           },
           status: 'done',
         });
@@ -49,8 +45,7 @@ function AuthContextProvider({ children }) {
           ...authState,
           user: null,
           error: e,
-          status: 'done',
-          roles: null,
+          status: 'done'
         });
       }
     }
@@ -65,14 +60,16 @@ function AuthContextProvider({ children }) {
         ...authState,
         error: null,
         user: null,
-        status: 'done',
-        roles: null,
+        status: 'done'
       });
     }
   }, []);
 
   function login(data) {
+    // 1. de token willen we in de local storage zetten
     localStorage.setItem('token', data.accessToken);
+
+    // 2. de user-informatie willen we in de context zetten
     setAuthState({
       ...authState,
       user: {
@@ -82,14 +79,14 @@ function AuthContextProvider({ children }) {
       }
     })
 
-    console.log("user", data.roles);
-
     // 3. als dat allemaal gelukt is, willen we doorgelinkt worden naar de profielpagina!
     // Dit doen we in het component dat deze functie aanroept, zelf!
   }
 
   function logout() {
+    // 1. Maak local storage leeg
     localStorage.clear();
+    // 2. Haal de user uit de context-state
     setAuthState({
       ...authState,
       user: null,
@@ -105,10 +102,10 @@ function AuthContextProvider({ children }) {
   // };
 
   return (
-    <AuthContext.Provider value={{ ...authState, login, logout }}>
-      {authState.status === 'done' && children}
-      {authState.status === 'pending' && <p>Loading...</p>}
-    </AuthContext.Provider>
+      <AuthContext.Provider value={{ ...authState, login, logout }}>
+        {authState.status === 'done' && children}
+        {authState.status === 'pending' && <p>Loading...</p>}
+      </AuthContext.Provider>
   );
 }
 
