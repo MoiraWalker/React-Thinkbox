@@ -1,0 +1,16 @@
+.form-wrapper {
+  display: flex;
+  background-color: $window-color;
+  flex-direction: column;
+  width: 350px;
+  padding: 3rem;
+}
+
+.form-item {
+  padding-bottom: 20px;
+}
+
+.form-provider {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,43 +1,15 @@
 @import '../../../../styles/abstracts/variables';
 
-.form-item {
-    padding-bottom: 20px;
-}
-
-.form-sent {
-    background-color: #86f3b2;
-    padding: 1rem;
-    margin-top: 20px;
-    text-align: center;
-    animation-name: sent-animation;
-    animation-duration: 2s;
-    opacity: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.form-sent-p{
-   margin-left: auto;
-
-}
-
-.form-sent-img{
-    margin-left: auto;
-
-}
-
-@keyframes sent-animation {
-    0% {opacity: 0;}
-    50% {opacity: 1;}
-    100% {opacity: 0;}
-
-}
-
-.form-provider {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-different{
-    margin-top: 20px;
+.success {
+    &__container {
+        background-color: #b2ffeb;
+        width: 100%;
+        padding: 1rem;
+    }
+    &__message {
+        font-size: 1rem;
+    }
+    &__link {
+        color: #5ce8c3;
+    }
 }

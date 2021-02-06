@@ -56,14 +56,13 @@
     //display: none;
   }
 
-    &__padding {
-      padding-left: 0;
+  &__padding {
+    padding-left: 0;
 
-      @include breakpoint(screen-m) {
-        padding-left: 5vw;
-      }
+    @include breakpoint(screen-m) {
+      padding-left: 5vw;
     }
-
+  }
 }
 
 

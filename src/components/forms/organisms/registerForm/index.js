@@ -6,6 +6,7 @@ import {useState} from 'react';
 import './index.scss';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import {NavLink} from "react-router-dom";
 
 
 export const RegisterForm = () => {
@@ -41,6 +42,12 @@ export const RegisterForm = () => {
 
     return (
         <div>
+            {createUserSuccess ? (
+                <div className="success__container">
+                    <div className="success__message">Account registered succesfully! CLick
+                        <NavLink className="success__link" to="/login">here</NavLink> to log in</div>
+                </div>
+            ) : (
             <FormProvider {...methods} register={register} handleSubmit={handleSubmit}>
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +109,7 @@ export const RegisterForm = () => {
                     </form>
                 </div>
             </FormProvider>
+                )}
         </div>
     );
 }
