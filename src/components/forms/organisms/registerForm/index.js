@@ -7,6 +7,7 @@ import './index.scss';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
+import {LinkWrapper} from "../../molecules/linkWrapper";
 
 
 export const RegisterForm = () => {
@@ -106,6 +107,12 @@ export const RegisterForm = () => {
                                 <ButtonWrapper>
                                     <Button>Create account</Button>
                                 </ButtonWrapper>
+                            <LinkWrapper>
+                                <p>Already have an account? Click
+                                    <NavLink to="/login" className="link">here</NavLink>
+                                    to login.
+                                </p>
+                            </LinkWrapper>
                             </div>
                         </form>
                     </div>

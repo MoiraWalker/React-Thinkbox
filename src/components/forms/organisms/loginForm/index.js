@@ -4,7 +4,7 @@ import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
 import {useState, useEffect, useContext} from 'react';
 import './index.scss';
-import {NavLink, useHistory, Link} from "react-router-dom";
+import {NavLink, useHistory } from "react-router-dom";
 import {LinkWrapper} from "../../molecules/linkWrapper";
 import {AuthContext, useAuthState} from "../../../../context/authContextProvider";
 import axios from 'axios';
@@ -13,7 +13,6 @@ export const LoginForm = () => {
     const {register, handleSubmit, ...methods} = useForm({mode: 'onChange'});
     const {login} = useContext(AuthContext);
     const {isAuthenticated} = useAuthState();
-    const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const history = useHistory();
 
@@ -24,7 +23,6 @@ export const LoginForm = () => {
     }, [isAuthenticated]);
 
     async function onSubmit(data) {
-        toggleLoading(true);
         setError('');
         try {
             const response = await axios.post('http://localhost:8080/api/auth/signin', {
@@ -33,10 +31,8 @@ export const LoginForm = () => {
             })
             login(response.data);
         } catch (e) {
-            console.error(e);
-            setError('Inloggen is mislukt');
+            setError('Login credentials invalid, please try again');
         }
-        toggleLoading(false);
     }
 
     const onError = (errorList) => {
@@ -75,12 +71,13 @@ export const LoginForm = () => {
                         >
                         </InputField>
                     </div>
+                    {error && <p className="error-message">{error}</p>}
                     <ButtonWrapper>
                         <Button type="submit">Submit</Button>
                     </ButtonWrapper>
                     <LinkWrapper>
                         <p>Click
-                            <NavLink to="/register" exact activeClassName="link--active" className="link">here</NavLink>
+                            <NavLink to="/register" exact className="link">here</NavLink>
                             to create an account
                         </p>
                     </LinkWrapper>
