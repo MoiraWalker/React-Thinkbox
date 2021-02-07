@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Login, Project, Projects, Admin, Register, Account } from '../../pages';
 import { PrivateRoute } from "../privateRoute";
+import { PrivateRouteAdmin } from "../privateRouteAdmin";
 
 export const Routes = () => {
     return (
@@ -18,10 +19,9 @@ export const Routes = () => {
             <PrivateRoute exact path="/project">
                 <Project/>,
             </PrivateRoute>
-            <PrivateRoute exact path="/admin">
+            <PrivateRouteAdmin exact path="/admin">
                 <Admin/>,
-            </PrivateRoute>
-
+            </PrivateRouteAdmin>
             <Route path="/register" component={Register}></Route>
             <Route path="/login" component={Login}></Route>
             {/*<Route path="/post:id" component={BlogPost}/>*/}
