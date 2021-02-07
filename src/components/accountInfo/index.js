@@ -6,7 +6,7 @@ import {AuthContext, useAuthState} from "../../context/authContextProvider";
 
 export const AccountInfo = ({setActiveComponent, username, email}) => {
     const {logout} = useContext(AuthContext);
-    const {isAuthenticated} = useAuthState();
+   // const {isAuthenticated} = useAuthState();
 
     const editUser = () => {
         setActiveComponent('edit');
