@@ -3,7 +3,6 @@ import {ProjectInfo} from "../../components/projectInfo";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-
 export const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [isUpdated, setIsUpdated] = useState(null);
@@ -49,7 +48,7 @@ export const Projects = () => {
                 <div className='user__container'>
                     {
                         projects.map((project) => {
-                            return <ProjectInfo id={projects.id} title={project.title} privateView={project.privateView}/>
+                            return <ProjectInfo id={project.id} title={project.title} privateView={project.privateView} setIsDeleted={setIsDeleted} setIsUpdated={setIsUpdated}/>
                         })
                     }
                 </div>

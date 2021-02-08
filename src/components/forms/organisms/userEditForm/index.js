@@ -6,7 +6,7 @@ import './index.scss';
 import axios from "axios";
 import { useState, useEffect } from 'react';
 
-export const UserEditForm = ({ id, email, username, setIsUpdated, editOnFalse }) => {
+export const UserEditForm = ({ id, email, username, setIsUpdated, toggleEdit }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
         defaultValues: { username: username, email: email },
         mode: 'onChange'
@@ -20,14 +20,14 @@ export const UserEditForm = ({ id, email, username, setIsUpdated, editOnFalse })
         try {
             const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
             setIsUpdated(true);
-            editOnFalse(false);
+            toggleEdit(false);
         } catch (error) {
             console.error(error);
         }
     }
 
     const onCancel = () => {
-        editOnFalse(false);
+        toggleEdit(false)
     }
 
     return (

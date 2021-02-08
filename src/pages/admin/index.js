@@ -1,6 +1,6 @@
 import './index.scss';
-import {User} from "../../components/user/user";
-import {useEffect, useState} from "react";
+import { User } from "../../components/user";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const Admin = () => {

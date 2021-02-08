@@ -1,10 +1,9 @@
 import './index.scss';
 import React, { useState } from 'react';
 import axios from "axios";
-import { UserEditForm } from "../../forms/organisms/userEditForm";
-import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
-import { ReactComponent as Edit } from '../../../assets/images/edit.svg';
-
+import { UserEditForm } from "../forms/organisms/userEditForm";
+import { ReactComponent as Delete } from '../../assets/images/delete.svg';
+import { ReactComponent as Edit } from '../../assets/images/edit.svg';
 
 export const User = ({ id, email, setIsDeleted, setIsUpdated, username  })  => {
     const [ edit, toggleEdit ] = useState(false);
@@ -25,7 +24,7 @@ export const User = ({ id, email, setIsDeleted, setIsUpdated, username  })  => {
     return (
         <div className="user__card">
             { edit ? (
-             <UserEditForm id={id}  username={username} email={email} setIsUpdated={setIsUpdated}  editOnFalse={ () => toggleEdit(false)}/>
+             <UserEditForm id={id}  username={username} email={email} setIsUpdated={setIsUpdated} toggleEdit={toggleEdit}/>
             ) : (
                 <div>
                     <h2>{username}</h2>
