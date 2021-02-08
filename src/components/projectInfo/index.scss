@@ -1,0 +1,24 @@
+@import '../../styles/abstracts/variables';
+@import "../../styles/abstracts/mixins";
+
+.project {
+
+  &__card {
+    background-color: $user-card;
+    flex-basis: 400px;
+    max-height: 500px;
+    padding: 30px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    @include box-shadow;
+  }
+
+  &__button-wrapper {
+    display: flex;
+  }
+}
+
+

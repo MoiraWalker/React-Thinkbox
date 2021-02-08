@@ -1,7 +1,7 @@
 import './index.scss';
 import {useState, useEffect } from "react";
 import {AccountEditForm} from "../../components/forms/organisms/accountEditForm";
-import {AccountInfo} from "../../components/accountInfo";
+import {AccountInfo } from "../../components/accountInfo";
 import {AccountChangePasswordForm} from "../../components/forms/organisms/accountChangePasswordForm";
 import { useAuthState } from "../../context/authContextProvider";
 import axios  from "axios";

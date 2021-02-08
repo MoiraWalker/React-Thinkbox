@@ -1,6 +1,7 @@
 import './index.scss';
 
 export const Project = () => {
+
     return(
         <div className='page__wrapper'>
             <div className="page__container">
@@ -9,3 +10,5 @@ export const Project = () => {
         </div>
     );
 };
+
+
