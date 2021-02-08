@@ -3,12 +3,14 @@ import {ProjectInfo} from "../../components/projectInfo";
 import {useEffect, useState} from "react";
 import {Button} from "../../components/forms/atoms/button";
 import axios from "axios";
+import {ProjectAddForm} from "../../components/forms/organisms/projectAddForm";
 
 export const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [isUpdated, setIsUpdated] = useState(null);
     const [isDeleted, setIsDeleted] = useState(null);
     const [addProject, setAddProject] = useState(false);
+    // const [edit, toggleEdit] = useState(false);
 
     useEffect(() => {
         getAllProjects();
@@ -40,8 +42,6 @@ export const Projects = () => {
         }
     }
 
-    console.log("projects", projects);
-
     const addProjectForm = () => {
         setAddProject(true);
     }
@@ -49,7 +49,7 @@ export const Projects = () => {
     return (
         <div className='page__wrapper'>
             {addProject ?
-                (<p>add projec</p>)
+                (<ProjectAddForm setAddProject={setAddProject}/> )
                 :
                 (<div className="page__container">
                         <div className="page__heading">
