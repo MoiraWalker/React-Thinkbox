@@ -24,7 +24,7 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
         } else {
             setAccess('Public');
         }
-    }, [])
+    }, [setAccess])
 
     const editProject = () => {
         toggleEdit(true);
@@ -33,7 +33,7 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
     return (
         <div className="user__card">
             {edit ? (
-                <ProjectEditForm title={title} id={id} toggleEdit={toggleEdit} setIsUpdated={setIsUpdated} setAcces={setAccess}/>
+                <ProjectEditForm title={title} id={id} toggleEdit={toggleEdit} setIsUpdated={setIsUpdated} setAccess={setAccess}/>
             ) : (
                 <div>
                     <h2>{title}</h2>

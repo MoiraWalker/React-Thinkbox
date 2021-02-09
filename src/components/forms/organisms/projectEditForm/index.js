@@ -63,8 +63,8 @@ export const ProjectEditForm = ({id, title, toggleEdit, setIsUpdated, setAccess}
                         })}
 
                     >
-                        <SelectOption name="pets" value="Private">Private</SelectOption>
-                        <SelectOption name="pets" value="Public">Public</SelectOption>
+                        <SelectOption name="private" value="Private">Private</SelectOption>
+                        <SelectOption name="public" value="Public">Public</SelectOption>
                     </SelectBox>
                 </div>
                 <ButtonWrapper>

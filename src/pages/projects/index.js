@@ -10,7 +10,7 @@ export const Projects = () => {
     const [isUpdated, setIsUpdated] = useState(null);
     const [isDeleted, setIsDeleted] = useState(null);
     const [addProject, setAddProject] = useState(false);
-    // const [edit, toggleEdit] = useState(false);
+    const [ newProject, setNewProject ] = useState(false);
 
     useEffect(() => {
         getAllProjects();
@@ -29,6 +29,14 @@ export const Projects = () => {
             setIsUpdated(null);
         }
     }, [isUpdated])
+
+    useEffect(() => {
+        if (newProject) {
+            getAllProjects();
+            setNewProject(false);
+        }
+    }, [newProject])
+
 
     async function getAllProjects() {
         try {
@@ -49,7 +57,7 @@ export const Projects = () => {
     return (
         <div className='page__wrapper'>
             {addProject ?
-                (<ProjectAddForm setAddProject={setAddProject}/> )
+                (<ProjectAddForm setAddProject={setAddProject} setNewProject={setNewProject}/> )
                 :
                 (<div className="page__container">
                         <div className="page__heading">

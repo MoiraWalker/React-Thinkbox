@@ -17,8 +17,10 @@ $link-color: #4242b1;
 // button
 $button-primary: #63FFD6;
 $button-primary--hover: #5ce8c3;
-$button-secondary: white;
-$button-secondary--hover: #ebeaea;
+$button-secondary: $background-color-primary;
+$button-secondary--hover: #3a436f;
+$button-tertiary: white;
+$button-tertiary--hover: grey;
 
 // cards
 $user-card: #8998ea;

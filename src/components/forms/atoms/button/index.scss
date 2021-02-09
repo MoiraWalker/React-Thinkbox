@@ -26,18 +26,19 @@
 
   &__secondary {
     background-color: $button-secondary;
-    border: solid 1rem $text-color-primary 0.3rem;
+    color: white;
 
     &:hover {
       background-color: $button-secondary--hover;
     }
   }
 
-  //&__tertairy {
-  //  background-color: #313c6f;
-  //  border: solid 0.3rem $off-white;
-  //  color: $off-white;
-  //}
+  &__tertairy {
+    background-color: $button-tertiary;
+    &:hover {
+      background-color: $button-tertiary--hover;
+    }
+  }
 
   &__icon {
     background-color: transparent;
