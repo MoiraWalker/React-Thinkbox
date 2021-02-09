@@ -14,11 +14,14 @@
     margin-right: 30px;
     margin-bottom: 30px;
     @include box-shadow;
+
+    &:hover {
+      background-color: #83b9e5;
+      cursor: pointer;
+    }
   }
 
   &__button-wrapper {
     display: flex;
   }
 }
-
-

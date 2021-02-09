@@ -16,7 +16,7 @@ export const Routes = () => {
             <PrivateRoute exact path="/projects">
                 <Projects/>,
             </PrivateRoute>
-            <PrivateRoute exact path="/project">
+            <PrivateRoute exact path="/project:id">
                 <Project/>,
             </PrivateRoute>
             <PrivateRouteAdmin exact path="/admin">
@@ -24,7 +24,6 @@ export const Routes = () => {
             </PrivateRouteAdmin>
             <Route path="/register" component={Register}></Route>
             <Route path="/login" component={Login}></Route>
-            {/*<Route path="/post:id" component={BlogPost}/>*/}
         </Switch>
     );
 }

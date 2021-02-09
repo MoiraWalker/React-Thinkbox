@@ -4,10 +4,12 @@ import {ReactComponent as Delete} from "../../assets/images/delete.svg";
 import {ReactComponent as Edit} from "../../assets/images/edit.svg";
 import axios from "axios";
 import { ProjectEditForm } from "../forms/organisms/projectEditForm";
+import {useHistory} from "react-router-dom";
 
 export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}) => {
     const [edit, toggleEdit] = useState(false);
     const [access, setAccess] = useState("Private");
+    const history = useHistory();
 
     async function deleteProject(id) {
         try {
@@ -30,12 +32,16 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
         toggleEdit(true);
     }
 
+    const toProject= () => {
+        history.push(`/project${id}`);
+    }
+
     return (
         <div className="project__card">
             {edit ? (
                 <ProjectEditForm title={title} id={id} toggleEdit={toggleEdit} setIsUpdated={setIsUpdated} setAccess={setAccess}/>
             ) : (
-                <div>
+                <div onClick={toProject}>
                     <h2>{title}</h2>
                     <p>{access}</p>
                     <div className="project__button-wrapper">
@@ -43,7 +49,7 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
                             <Delete/>
                         </button>
                         <button className="button__icon" onClick={editProject}>
-                            <Edit/>
+                            <Edit />
                         </button>
                     </div>
                 </div>
