@@ -1,6 +1,5 @@
 @import "../../../../styles/abstracts/variables";
 
-
 .button {
   padding: 10px 40px 10px 40px;
   background-color: $button-primary;
@@ -30,13 +29,6 @@
 
     &:hover {
       background-color: $button-secondary--hover;
-    }
-  }
-
-  &__tertairy {
-    background-color: $button-tertiary;
-    &:hover {
-      background-color: $button-tertiary--hover;
     }
   }
 

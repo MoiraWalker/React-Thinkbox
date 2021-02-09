@@ -1,5 +1,5 @@
 import './index.scss';
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import {ReactComponent as Delete} from "../../assets/images/delete.svg";
 import {ReactComponent as Edit} from "../../assets/images/edit.svg";
 import axios from "axios";
@@ -31,14 +31,14 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
     }
 
     return (
-        <div className="user__card">
+        <div className="project__card">
             {edit ? (
                 <ProjectEditForm title={title} id={id} toggleEdit={toggleEdit} setIsUpdated={setIsUpdated} setAccess={setAccess}/>
             ) : (
                 <div>
                     <h2>{title}</h2>
                     <p>{access}</p>
-                    <div className="user__button-wrapper">
+                    <div className="project__button-wrapper">
                         <button className="button__icon" onClick={() => deleteProject(id)}>
                             <Delete/>
                         </button>

@@ -3,5 +3,6 @@
 .input {
     width: 100%;
     padding: 1rem 0;
-    border: 0.2rem solid #4A5592;
+    border: 0.2rem solid $input-border;
+    outline: none;
 }
