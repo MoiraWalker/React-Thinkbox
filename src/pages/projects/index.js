@@ -41,7 +41,6 @@ export const Projects = () => {
     async function getAllProjects() {
         try {
             const result = await axios.get(`http://localhost:8080/api/projects`);
-            console.log("projects", result);
             setProjects(result.data.sort(function (a, b) {
                 return a.id - b.id;
             }));
