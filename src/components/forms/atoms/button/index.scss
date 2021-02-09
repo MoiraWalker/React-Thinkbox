@@ -32,11 +32,16 @@
     }
   }
 
+  &__tertairy {
+    background-color: $off-white;
+    padding: 5px 10px;
+  }
+
   &__icon {
     background-color: transparent;
     border: none;
     padding: 0;
-    margin: 2rem 1.4rem 0 0;
+    margin-left: 1rem;
     outline: none;
   }
 }

@@ -3,11 +3,20 @@
 
 .user {
 
+  &__background{
+    padding: 30px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__card {
     background-color: $user-card;
     flex-basis: 400px;
     max-height: 500px;
-    padding: 30px;
     margin-bottom: 20px;
     flex-grow: 1;
     flex-shrink: 1;

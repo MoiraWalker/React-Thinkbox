@@ -3,6 +3,12 @@
 
 .project {
 
+  &__align {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__card {
     background-color: $project-card;
     flex-basis: 400px;
@@ -15,10 +21,6 @@
     margin-bottom: 30px;
     @include box-shadow;
 
-    &:hover {
-      background-color: #83b9e5;
-      cursor: pointer;
-    }
   }
 
   &__button-wrapper {

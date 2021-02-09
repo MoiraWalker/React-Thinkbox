@@ -1,14 +1,14 @@
 import React from 'react';
-import { ButtonWrapper, InputField } from "../../molecules";
-import { Button } from '../../atoms';
-import { useForm, FormProvider } from 'react-hook-form';
+import {ButtonWrapper, InputField} from "../../molecules";
+import {Button} from '../../atoms';
+import {useForm, FormProvider} from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 
-export const UserEditForm = ({ id, email, username, setIsUpdated, toggleEdit }) => {
-    const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
-        defaultValues: { username: username, email: email },
+export const UserEditForm = ({id, email, username, setIsUpdated, toggleEdit}) => {
+    const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
+        defaultValues: {username: username, email: email},
         mode: 'onChange'
     });
 
@@ -31,42 +31,45 @@ export const UserEditForm = ({ id, email, username, setIsUpdated, toggleEdit }) 
     }
 
     return (
-     <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-         <form onSubmit={handleSubmit(updateUser, onError)}>
-             <h2>Edit user</h2>
-             <div className='form-item'>
-                 <InputField
-                     name="username"
-                     label="User name"
-                     type="text"
-                     fieldRef={register({
-                         required: {
-                             value: true,
-                             message: 'User name is required',
-                         }
-                     })}
-                 />
-             </div>
-                 <div className='form-item'>
-                     <InputField
-                         name="email"
-                         label="Email"
-                         type="text"
-                         fieldRef={register({
-                             required: {
-                                 value: true,
-                                 message: 'Email name is required',
-                             },
-                         })}
-                     />
-                 </div>
-             <ButtonWrapper>
-                 <Button onClick={updateUser} className="button button__primary button__margin-right">Save</Button>
-                 <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
-             </ButtonWrapper>
-         </form>
-     </FormProvider>
- );
+        <div className="user__background--edit">
+            <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(updateUser, onError)}>
+                    <h2>Edit user</h2>
+                    <div className='form-item'>
+                        <InputField
+                            name="username"
+                            label="User name"
+                            type="text"
+                            fieldRef={register({
+                                required: {
+                                    value: true,
+                                    message: 'User name is required',
+                                }
+                            })}
+                        />
+                    </div>
+                    <div className='form-item'>
+                        <InputField
+                            name="email"
+                            label="Email"
+                            type="text"
+                            fieldRef={register({
+                                required: {
+                                    value: true,
+                                    message: 'Email name is required',
+                                },
+                            })}
+                        />
+                    </div>
+                    <ButtonWrapper>
+                        <Button onClick={updateUser}
+                                className="button button__primary button__margin-right">Save</Button>
+                        <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
+                    </ButtonWrapper>
+                </form>
+            </FormProvider>
+        </div>
+    );
 }
 
 

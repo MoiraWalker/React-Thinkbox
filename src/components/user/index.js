@@ -26,17 +26,19 @@ export const User = ({ id, email, setIsDeleted, setIsUpdated, username  })  => {
             { edit ? (
              <UserEditForm id={id}  username={username} email={email} setIsUpdated={setIsUpdated} toggleEdit={toggleEdit}/>
             ) : (
-                <div>
-                    <h2>{username}</h2>
-                    <p>{email}</p>
-                    <div className="user__button-wrapper">
-                        <button className="button__icon" onClick={() => deleteUser(id)}>
-                            <Delete/>
-                        </button>
-                        <button className="button__icon" onClick={editUser}>
-                            <Edit/>
-                        </button>
+                <div className="user__background">
+                    <div className="user__header">
+                        <h2>{username}</h2>
+                        <div className="user__button-wrapper">
+                            <button className="button__icon" onClick={() => deleteUser(id)}>
+                                <Delete/>
+                            </button>
+                            <button className="button__icon" onClick={editUser}>
+                                <Edit/>
+                            </button>
+                        </div>
                     </div>
+                    <p>{email}</p>
                 </div>
                 )
             }
