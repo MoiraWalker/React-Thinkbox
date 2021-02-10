@@ -1,9 +1,9 @@
 import './index.scss';
-import {ProjectInfo} from "../../components/projectInfo";
-import {useEffect, useState} from "react";
-import {Button} from "../../components/forms/atoms/button";
+import { ProjectInfo } from "../../components/projectInfo";
+import { useEffect, useState } from "react";
+import { Button } from "../../components/forms/atoms/button";
 import axios from "axios";
-import {ProjectAddForm} from "../../components/forms/organisms/projectAddForm";
+import { ProjectAddForm } from "../../components/forms/organisms/projectAddForm";
 
 export const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -64,7 +64,7 @@ export const Projects = () => {
                             <Button onClick={addProjectForm}>Add project</Button>
                         </div>
                         {projects &&
-                        <div className='user__container'>
+                        <div className='page__items'>
                             {
                                 projects.map((project) => {
                                     return <ProjectInfo id={project.id}

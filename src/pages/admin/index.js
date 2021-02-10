@@ -43,7 +43,7 @@ export const Admin = () => {
             <div className="page__container">
                 <h1 className="page__header">Admin</h1>
                 {users &&
-                <div className='user__container'>
+                <div className='page__items'>
                     {
                         users.map((user) => {
                             return <User setIsUpdated={setIsUpdated} setIsDeleted={setIsDeleted} key={user.email}

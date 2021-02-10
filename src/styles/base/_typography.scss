@@ -19,6 +19,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Merriweather', 'Georgia', serif;
+  color: #253C64;
 }
 
 h1 {
@@ -66,4 +67,12 @@ p {
   font-family: 'Merriweather', 'Georgia', serif;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.post__title{
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #253C64;
+  padding: 3rem 2rem;
 }
