@@ -10,7 +10,6 @@ export const ProjectAddForm = ({setAddProject, setNewProject}) => {
         mode: 'onChange'
     });
 
-
     async function addProject(data) {
         try {
             const result = await axios.post(`http://localhost:8080/api/projects/`, data);

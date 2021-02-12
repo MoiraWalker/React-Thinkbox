@@ -2,16 +2,19 @@ import './index.scss';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
-import { Post } from "../../components/posts/post";
+import {Post} from "../../components/posts/post";
+import { Thought } from "../../components/posts/thought";
 
 export const Project = () => {
     const {id} = useParams();
     const [project, setProject] = useState("");
     const [posts, setPosts] = useState("");
+    const [thoughts, setThoughts] = useState("");
 
     useEffect(() => {
         getProject();
-        getAllProjects();
+        getAllPosts();
+        getAllThoughts();
     }, [])
 
     async function getProject() {
@@ -23,7 +26,7 @@ export const Project = () => {
         }
     }
 
-    async function getAllProjects() {
+    async function getAllPosts() {
         try {
             const result = await axios.get(`http://localhost:8080/api/posts`);
             setPosts(result.data);
@@ -32,17 +35,34 @@ export const Project = () => {
         }
     }
 
+    async function getAllThoughts() {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/thoughts`);
+            setThoughts(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
     return (
         <div className='page__wrapper'>
             <div className="page__container">
                 <h1 className="page__header">{project.title}</h1>
-                    { posts &&
-                    <div className="page__items">
-                        { posts.map((post) => {
-                            return <Post title={post.title}></Post>
-                        })}
-                    </div>
-                    }
+                {posts &&
+                <div className="page__items">
+                    {posts.map((post) => {
+                        return <Post title={post.title}></Post>
+                    })}
+                </div>
+                }
+                {thoughts &&
+                <div className="page__items">
+                    {thoughts.map((thought) => {
+                        return <Thought title={thought.title}></Thought>
+                    })}
+                </div>
+                }
             </div>
         </div>
     );
