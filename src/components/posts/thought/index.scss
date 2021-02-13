@@ -3,4 +3,7 @@
 
 .thought {
   background-color: $post-thought;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -2,6 +2,12 @@
 
 .page {
 
+
+  &__header {
+    color: $off-white;
+    font-weight: 400;
+  }
+
   &__wrapper {
     display: flex;
     justify-content: center;

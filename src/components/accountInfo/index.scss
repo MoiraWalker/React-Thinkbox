@@ -1,2 +1,8 @@
 @import '../../styles/abstracts/variables';
 @import "../../styles/abstracts/mixins";
+
+.account__info {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
