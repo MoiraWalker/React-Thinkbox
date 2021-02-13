@@ -2,19 +2,23 @@ import './index.scss';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
-import {Post} from "../../components/posts/post";
 import { Thought } from "../../components/posts/thought";
+import { Work } from "../../components/posts/work";
+import { PostAddForm } from "../../components/forms/organisms/postAddForm";
+import { Button } from "../../components/forms/atoms/button";
 
 export const Project = () => {
     const {id} = useParams();
     const [project, setProject] = useState("");
     const [posts, setPosts] = useState("");
     const [thoughts, setThoughts] = useState("");
+    const [works, setWorks] = useState("");
+    const [ addPost, setAddPost] = useState("false");
 
     useEffect(() => {
         getProject();
-        getAllPosts();
         getAllThoughts();
+        getAllWorks();
     }, [])
 
     async function getProject() {
@@ -26,44 +30,56 @@ export const Project = () => {
         }
     }
 
-    async function getAllPosts() {
-        try {
-            const result = await axios.get(`http://localhost:8080/api/posts`);
-            setPosts(result.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     async function getAllThoughts() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/thoughts`);
+            const result = await axios.get(`http://localhost:8080/api/posts/thoughts`);
             setThoughts(result.data);
         } catch (error) {
             console.error(error);
         }
     }
 
+    async function getAllWorks() {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/posts/works`);
+            setWorks(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const addPostForm = () => {
+        setAddPost(true);
+    }
 
     return (
         <div className='page__wrapper'>
-            <div className="page__container">
-                <h1 className="page__header">{project.title}</h1>
-                {posts &&
-                <div className="page__items">
-                    {posts.map((post) => {
-                        return <Post title={post.title}></Post>
-                    })}
-                </div>
-                }
-                {thoughts &&
-                <div className="page__items">
-                    {thoughts.map((thought) => {
-                        return <Thought title={thought.title}></Thought>
-                    })}
-                </div>
-                }
-            </div>
+            { addPost ?
+                ( <PostAddForm setAddPost={setAddPost}></PostAddForm> )
+                :
+                (
+                    <div className="page__container">
+                        <div className="page__heading">
+                            <h1 className="page__header">{project.title}</h1>
+                            <Button onClick={addPostForm}>Add post</Button>
+                        </div>
+                        {thoughts &&
+                        <div className="page__items">
+                            {thoughts.map((thought) => {
+                                return <Thought title={thought.title}></Thought>
+                            })}
+                        </div>
+                        }
+                        {works &&
+                        <div className="page__items">
+                            {works.map((work) => {
+                                return <Work title={work.title}></Work>
+                            })}
+                        </div>
+                        }
+                    </div>
+                )
+            }
         </div>
     );
 };

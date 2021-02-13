@@ -10,7 +10,7 @@ export const Projects = () => {
     const [isUpdated, setIsUpdated] = useState(null);
     const [isDeleted, setIsDeleted] = useState(null);
     const [addProject, setAddProject] = useState(false);
-    const [ newProject, setNewProject ] = useState(false);
+    const [newProject, setNewProject ] = useState(false);
 
     useEffect(() => {
         getAllProjects();

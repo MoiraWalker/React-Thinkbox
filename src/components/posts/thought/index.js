@@ -4,8 +4,8 @@ import './index.scss';
 export const Thought = ({title}) => {
 
     return(
-        <div className="thought__card">
-            <p className="thought__title">{title}</p>
+        <div className="post__card thought">
+            <p className="post__title">{title}</p>
         </div>
     );
 }
