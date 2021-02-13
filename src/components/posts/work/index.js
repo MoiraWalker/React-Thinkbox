@@ -5,7 +5,10 @@ export const Work = ({title}) => {
 
     return(
         <div className="post__card work">
-            <p className="post__title">{title}</p>
+            <div className="work__top">
+                <p className="post__title">{title}</p>
+            </div>
+            <p className="post__label">Work</p>
         </div>
     );
 }

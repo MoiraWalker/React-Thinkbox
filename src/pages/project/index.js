@@ -6,6 +6,8 @@ import {Thought} from "../../components/posts/thought";
 import {Work} from "../../components/posts/work";
 import {PostAddForm} from "../../components/forms/organisms/postAddForm";
 import {Button} from "../../components/forms/atoms/button";
+import {WorkAddForm} from "../../components/forms/organisms/workAddForm";
+import {ThoughtAddForm} from "../../components/forms/organisms/thoughtAddForm";
 
 export const Project = () => {
     const {id} = useParams();
@@ -13,21 +15,36 @@ export const Project = () => {
     const [thoughts, setThoughts] = useState("");
     const [works, setWorks] = useState("");
     const [addPost, setAddPost] = useState(false);
+    const [posts, setPosts] = useState("");
 
     useEffect(() => {
         getProject();
         getAllThoughts();
         getAllWorks();
+        getAllPosts();
     }, [])
 
     useEffect(() => {
         getAllThoughts();
     }, [addPost])
 
+    useEffect(() => {
+        getAllPosts();
+    }, [posts]);
+
     async function getProject() {
         try {
             const result = await axios.get(`http://localhost:8080/api/projects/${id}`);
             setProject(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function getAllPosts() {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/posts`);
+            setPosts(result.data);
         } catch (error) {
             console.error(error);
         }
@@ -55,6 +72,14 @@ export const Project = () => {
         setAddPost(true);
     }
 
+    const renderPost = (post) => {
+        if (post.type === "THOUGHT") {
+            return <Thought title={post.title} description={post.description}></Thought>
+        } else if (post.type === "WORK") {
+            return <Work title={post.title}></Work>
+        }
+    }
+
     return (
         <div className='page__wrapper'>
             {addPost ?
@@ -65,17 +90,11 @@ export const Project = () => {
                         <h1 className="page__header">{project.title}</h1>
                         <Button onClick={addPostForm}>Add post</Button>
                     </div>
-                    {thoughts &&
+
+                    {posts &&
                     <div className="page__items">
-                        {thoughts.map((thought) => {
-                            return <Thought title={thought.title} description={thought.description}></Thought>
-                        })}
-                    </div>
-                    }
-                    {works &&
-                    <div className="page__items">
-                        {works.map((work) => {
-                            return <Work title={work.title}></Work>
+                        {posts.map((post) => {
+                            return renderPost(post);
                         })}
                     </div>
                     }

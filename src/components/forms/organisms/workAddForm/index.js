@@ -1,20 +1,19 @@
 import React from 'react';
-import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
-import {Button, SelectOption} from '../../atoms';
+import {ButtonWrapper, InputField} from "../../molecules";
+import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
-import {useState} from 'react';
 import './index.scss';
 import axios from "axios";
 
-export const ThoughtAddForm = ({setCancel, setAddPost}) => {
+export const WorkAddForm = ({setCancel, setAddPost}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
 
-    async function addThought(data) {
+    async function addWork(data) {
         try {
-            const formData = {...data, type:"THOUGHT"};
-            const result = await axios.post(`http://localhost:8080/api/posts/thoughts`, formData);
+            const formData = {...data, type:"WORK"};
+            const result = await axios.post(`http://localhost:8080/api/posts/works`, formData);
             setAddPost(false);
         } catch (error) {
             console.error(error);
@@ -27,7 +26,7 @@ export const ThoughtAddForm = ({setCancel, setAddPost}) => {
 
     return (
         <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-            <form onSubmit={handleSubmit(addThought)}>
+            <form onSubmit={handleSubmit(addWork)}>
                 <div className='form-item'>
                     <InputField
                         name="title"
@@ -54,11 +53,23 @@ export const ThoughtAddForm = ({setCancel, setAddPost}) => {
                         })}
                     />
                 </div>
+                <div className='form-item'>
+                    <InputField
+                        name="link"
+                        label="Link"
+                        type="text"
+                        fieldRef={register({
+                            required: {
+                                value: true,
+                                message: 'Link is required',
+                            }
+                        })}
+                    />
+                </div>
                 <ButtonWrapper>
-                    <Button onClick={addThought} className="button button__primary button__margin-right">Save</Button>
+                    <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
                     <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
                 </ButtonWrapper>
-
             </form>
         </FormProvider>
     );

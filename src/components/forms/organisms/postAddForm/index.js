@@ -5,6 +5,7 @@ import {useForm, FormProvider} from 'react-hook-form';
 import {useState, useEffect} from 'react';
 import './index.scss';
 import {ThoughtAddForm} from "../thoughtAddForm";
+import {WorkAddForm} from "../workAddForm";
 
 export const PostAddForm = ({setAddPost}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
@@ -32,7 +33,7 @@ export const PostAddForm = ({setAddPost}) => {
 
     const renderActiveForm = () => {
         if (selectedType === "work") {
-            return <p>work</p>
+            return <WorkAddForm setCancel={setCancel} setAddPost={setAddPost}></WorkAddForm>
         } else if (selectedType === "thought") {
             return <ThoughtAddForm setCancel={setCancel} setAddPost={setAddPost}></ThoughtAddForm>
         }

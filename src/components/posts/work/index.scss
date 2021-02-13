@@ -3,6 +3,9 @@
 
 .work {
   background-color: $post-work;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
