@@ -4,9 +4,6 @@ import {Button, SelectOption} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
-import {AccountInfo} from "../../../accountInfo";
-import {AccountEditForm} from "../accountEditForm";
-import {AccountChangePasswordForm} from "../accountChangePasswordForm";
 
 export const ProjectAddForm = ({setAddProject, setNewProject}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({

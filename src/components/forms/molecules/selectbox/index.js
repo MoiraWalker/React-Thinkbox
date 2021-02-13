@@ -1,9 +1,9 @@
 import React from 'react';
-import { Label, SelectOption  } from '../../atoms';
+import {Label} from '../../atoms';
 import './index.scss';
 
 
-export const SelectBox = ({ label, name, fieldRef, id, children }) => {
+export const SelectBox = ({label, name, fieldRef, id, children, value, onChange}) => {
     return (
         <div>
             <Label htmlFor={id}>{label}</Label>
@@ -11,6 +11,8 @@ export const SelectBox = ({ label, name, fieldRef, id, children }) => {
                 name={name}
                 id={id}
                 ref={fieldRef}
+                onChange={onChange}
+                value={value}
             >{children}</select>
         </div>
     );
