@@ -12,8 +12,8 @@ export const PostAddForm = ({setAddPost}) => {
         mode: 'onChange'
     });
     const [cancel, setCancel] = useState();
-    const [selectedType, setSelectedType] = useState("thoughtInfo");
-    const [activeForm, setActiveForm] = useState(null);
+    const [selectedType, setSelectedType] = useState("thought");
+
 
     const addPost = (data) => {
         console.log(data);

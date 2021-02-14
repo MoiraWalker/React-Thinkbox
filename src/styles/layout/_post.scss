@@ -3,6 +3,11 @@
 
 .post {
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
  &__info{
    width: 300px;
    height:300px;
@@ -21,22 +26,26 @@
     font-size: 2rem;
     font-weight: 400;
     color: #253C64;
-    padding: 3rem 2rem 1.8rem 2rem;
+    padding-bottom: 2rem;
   }
 
   &__label {
     font-family: 'Merriweather', 'Georgia', serif;
     font-size: 1.3rem;
-    margin: 0 2rem 3rem 2rem;
   }
 
   &__card {
     @include box-shadow;
+    padding: 3rem;
   }
 
   &__des {
-    margin: 0 2rem;
+    margin-bottom: 2rem;
   }
 
 }
 
+.close {
+  width: 20px;
+  height:20px;
+}
