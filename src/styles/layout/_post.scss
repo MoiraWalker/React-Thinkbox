@@ -43,6 +43,15 @@
     margin-bottom: 2rem;
   }
 
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__buttons {
+
+  }
+
 }
 
 .close {

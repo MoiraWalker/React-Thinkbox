@@ -30,7 +30,7 @@ export const Project = () => {
 
     useEffect(() => {
         getAllPosts();
-    }, [posts]);
+    }, [addPost]);
 
     async function getProject() {
         try {

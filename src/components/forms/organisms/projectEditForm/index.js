@@ -18,7 +18,6 @@ export const ProjectEditForm = ({id, title, toggleEdit, setIsUpdated, setAccess}
     }
 
     async function updateProject(data) {
-        console.log('access', data.access);
         try {
             const result = await axios.put(`http://localhost:8080/api/projects/${id}`, data);
             setIsUpdated(true);
