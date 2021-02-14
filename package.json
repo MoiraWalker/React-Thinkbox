@@ -39,5 +39,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "react-external-link": "^1.2.0"
+  }
 }

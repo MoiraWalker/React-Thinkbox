@@ -1,11 +1,11 @@
 @import "../../../styles/abstracts/variables";
 @import "../../../styles/abstracts/mixins";
 
-.work__info {
+.work {
   background-color: $post-work;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 450px;
+  height:450px;
 }
-
-

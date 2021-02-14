@@ -76,7 +76,7 @@ export const Project = () => {
         if (post.type === "THOUGHT") {
             return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
         } else if (post.type === "WORK") {
-            return <WorkInfo id={id} title={post.title}></WorkInfo>
+            return <WorkInfo id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
         }
     }
 

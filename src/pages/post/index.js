@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
 import {Thought} from "../../components/posts/thought";
+import { Work} from "../../components/posts/work";
 
 export const Post = () => {
     const {id} = useParams();
@@ -21,13 +22,15 @@ export const Post = () => {
         getPost();
     },[])
 
+
     const getPostType = () => {
         if (post.type === "WORK") {
-            return <p>work</p>
+            return <Work title={post.title} description={post.description}></Work>
         } else if (post.type === "THOUGHT") {
             return <Thought title={post.title} description={post.description}></Thought>
         }
     }
+
 
     console.log(post);
 

@@ -58,12 +58,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                         name="link"
                         label="Link"
                         type="text"
-                        fieldRef={register({
-                            required: {
-                                value: true,
-                                message: 'Link is required',
-                            }
-                        })}
+                        fieldRef={register}
                     />
                 </div>
                 <ButtonWrapper>
