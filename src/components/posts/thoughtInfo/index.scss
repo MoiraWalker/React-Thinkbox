@@ -1,11 +1,10 @@
 @import "../../../styles/abstracts/variables";
 @import "../../../styles/abstracts/mixins";
 
-.thought {
+.thought-info {
   background-color: $post-thought;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 370px;
-  height:370px;
+  cursor: zoom-in;
 }

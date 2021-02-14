@@ -2,8 +2,8 @@ import './index.scss';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
-import {Thought} from "../../components/posts/thought";
-import {Work} from "../../components/posts/work";
+import {ThoughtInfo} from "../../components/posts/thoughtInfo";
+import {WorkInfo} from "../../components/posts/workInfo";
 import {PostAddForm} from "../../components/forms/organisms/postAddForm";
 import {Button} from "../../components/forms/atoms/button";
 import {WorkAddForm} from "../../components/forms/organisms/workAddForm";
@@ -74,9 +74,9 @@ export const Project = () => {
 
     const renderPost = (post) => {
         if (post.type === "THOUGHT") {
-            return <Thought title={post.title} description={post.description}></Thought>
+            return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
         } else if (post.type === "WORK") {
-            return <Work title={post.title}></Work>
+            return <WorkInfo id={id} title={post.title}></WorkInfo>
         }
     }
 

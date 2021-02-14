@@ -4,6 +4,7 @@ import { Project } from './project';
 import { Projects } from './projects';
 import { Register } from './register';
 import { Account } from './account';
+import { Post } from "./post";
 
 export {
     Account,
@@ -12,4 +13,5 @@ export {
     Project,
     Projects,
     Register,
+    Post
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Login, Project, Projects, Admin, Register, Account } from '../../pages';
+import { Login, Project, Projects, Admin, Register, Account, Post } from '../../pages';
 import { PrivateRoute } from "../privateRoute";
 import { PrivateRouteAdmin } from "../privateRouteAdmin";
 
@@ -18,6 +18,9 @@ export const Routes = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/project:id">
                 <Project/>,
+            </PrivateRoute>
+            <PrivateRoute exact path="/post:id">
+                <Post/>,
             </PrivateRoute>
             <PrivateRouteAdmin exact path="/admin">
                 <Admin/>,

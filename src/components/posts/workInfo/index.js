@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.scss';
 
-export const Work = ({title}) => {
+export const WorkInfo = ({title}) => {
 
     return(
-        <div className="post__card work">
+        <div className="post__card post__info work">
             <div className="work__top">
                 <p className="post__title">{title}</p>
             </div>
