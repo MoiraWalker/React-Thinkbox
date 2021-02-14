@@ -8,6 +8,8 @@ import {PostAddForm} from "../../components/forms/organisms/postAddForm";
 import {Button} from "../../components/forms/atoms/button";
 import {WorkAddForm} from "../../components/forms/organisms/workAddForm";
 import {ThoughtAddForm} from "../../components/forms/organisms/thoughtAddForm";
+import {SelectBox} from "../../components/forms/molecules";
+import {SelectOption} from "../../components/forms/atoms/selectOption";
 
 export const Project = () => {
     const {id} = useParams();
@@ -16,6 +18,7 @@ export const Project = () => {
     const [works, setWorks] = useState("");
     const [addPost, setAddPost] = useState(false);
     const [posts, setPosts] = useState("");
+    const [selectedType, setSelectedType] = useState("thought");
 
     useEffect(() => {
         getProject();
@@ -71,14 +74,36 @@ export const Project = () => {
     const addPostForm = () => {
         setAddPost(true);
     }
+    //
+    // const renderPost = (post) => {
+    //     if (post.type === "THOUGHT") {
+    //         return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
+    //     } else if (post.type === "WORK") {
+    //         return <WorkInfo id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
+    //     }
+    // }
 
     const renderPost = (post) => {
-        if (post.type === "THOUGHT") {
+        if (post.type === "THOUGHT" && selectedType === "thought") {
             return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
-        } else if (post.type === "WORK") {
+        } else if (post.type === "WORK" && selectedType === "work") {
             return <WorkInfo id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
+        } else if (post && selectedType === "all") {
+            if (post.type === "THOUGHT") {
+                return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
+            } else if (post.type === "WORK") {
+                return <WorkInfo id={post.id} title={post.title} description={post.description}
+                                 link={post.link}></WorkInfo>
+            }
         }
     }
+
+    const handleSelectChange = (event) => {
+        setSelectedType(event.target.value);
+    }
+
+    console.log(selectedType);
+
 
     return (
         <div className='page__wrapper'>
@@ -88,6 +113,16 @@ export const Project = () => {
                 (<div className="page__container">
                     <div className="page__heading">
                         <h1 className="page__header">{project.title}</h1>
+                        <form>
+                            <SelectBox
+                                onChange={handleSelectChange}
+                                value={selectedType}>
+                                <SelectOption name="postType" value="all">All</SelectOption>
+                                <SelectOption name="postType" value="thought">Thought</SelectOption>
+                                <SelectOption name="postType" value="work">Work</SelectOption>
+                            </SelectBox>
+                        </form>
+
                         <Button onClick={addPostForm}>Add post</Button>
                     </div>
 
