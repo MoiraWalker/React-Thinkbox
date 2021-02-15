@@ -6,8 +6,6 @@ import {ThoughtInfo} from "../../components/posts/thoughtInfo";
 import {WorkInfo} from "../../components/posts/workInfo";
 import {PostAddForm} from "../../components/forms/organisms/postAddForm";
 import {Button} from "../../components/forms/atoms/button";
-import {WorkAddForm} from "../../components/forms/organisms/workAddForm";
-import {ThoughtAddForm} from "../../components/forms/organisms/thoughtAddForm";
 import {SelectBox} from "../../components/forms/molecules";
 import {SelectOption} from "../../components/forms/atoms/selectOption";
 
@@ -18,7 +16,7 @@ export const Project = () => {
     const [works, setWorks] = useState("");
     const [addPost, setAddPost] = useState(false);
     const [posts, setPosts] = useState("");
-    const [selectedType, setSelectedType] = useState("thought");
+    const [selectedType, setSelectedType] = useState("all");
 
     useEffect(() => {
         getProject();
@@ -74,14 +72,6 @@ export const Project = () => {
     const addPostForm = () => {
         setAddPost(true);
     }
-    //
-    // const renderPost = (post) => {
-    //     if (post.type === "THOUGHT") {
-    //         return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
-    //     } else if (post.type === "WORK") {
-    //         return <WorkInfo id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
-    //     }
-    // }
 
     const renderPost = (post) => {
         if (post.type === "THOUGHT" && selectedType === "thought") {

@@ -71,8 +71,7 @@ function AuthContextProvider({ children }) {
   }
 
   function isAdmin(data){
-    // ['USER', "ROLE_ADMIN"].includes("ROLE_ADMIN")
-    if ( data[0] === "ROLE_ADMIN") {
+    if ( data[0].includes("ROLE_ADMIN")) {
       setAdmin(true);
     } else {
       setAdmin(false);
