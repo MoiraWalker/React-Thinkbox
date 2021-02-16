@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 
 export const SelectOption = ({children, name, value}) => (
     <option

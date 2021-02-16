@@ -103,19 +103,20 @@ export const Project = () => {
                 (<div className="page__container">
                     <div className="page__heading">
                         <h1 className="page__header">{project.title}</h1>
-                        <form>
-                            <SelectBox
-                                onChange={handleSelectChange}
-                                value={selectedType}>
-                                <SelectOption name="postType" value="all">All</SelectOption>
-                                <SelectOption name="postType" value="thought">Thought</SelectOption>
-                                <SelectOption name="postType" value="work">Work</SelectOption>
-                            </SelectBox>
-                        </form>
-
-                        <Button onClick={addPostForm}>Add post</Button>
+                        <div className="project__buttons">
+                            <form>
+                                <SelectBox
+                                    className="select__type"
+                                    onChange={handleSelectChange}
+                                    value={selectedType}>
+                                    <SelectOption name="postType" value="all">All</SelectOption>
+                                    <SelectOption name="postType" value="thought">Thought</SelectOption>
+                                    <SelectOption name="postType" value="work">Work</SelectOption>
+                                </SelectBox>
+                            </form>
+                            <Button onClick={addPostForm}>Add post</Button>
+                        </div>
                     </div>
-
                     {posts &&
                     <div className="page__items">
                         {posts.map((post) => {

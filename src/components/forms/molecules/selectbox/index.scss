@@ -1,9 +1,20 @@
 select {
     width: 100%;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    height: 40px;
     margin-top: 1rem;
     border: 0.2rem solid #4A5592;
     outline: none;
+    font-family: 'Merriweather', 'Georgia', serif;
+    font-size: 1.6rem;
 }
+
+.select__type{
+    margin-top: 0;
+    background-color: #4A5592;
+    border: 0.2rem solid white;
+    color: white;
+    width: 130px;
+    margin-right: 3rem;
+}
+
 

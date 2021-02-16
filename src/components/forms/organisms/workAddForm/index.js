@@ -12,7 +12,9 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
-            const formData = {...data, type:"WORK"};
+            let upload = data.fileupload[0]
+            const formData = {...data, type:"WORK", fileupload: upload };
+            console.log("formdata", formData);
             const result = await axios.post(`http://localhost:8080/api/posts/works`, formData);
             setAddPost(false);
         } catch (error) {
@@ -20,12 +22,22 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
         }
     }
 
+    // async function uploadFile(data) {
+    //         let formData = new FormData();
+    //         formData.append("file", data.fileupload[0]);
+    //         console.log("FormDa", formData);
+    //         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
     const onCancel = () => {
         setCancel(true);
     }
 
     return (
-        <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+    <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
             <form onSubmit={handleSubmit(addWork)}>
                 <div className='form-item'>
                     <InputField
@@ -61,6 +73,15 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                         fieldRef={register}
                     />
                 </div>
+                <div className='form-item'>
+                    <InputField
+                        name="fileupload"
+                        label="File upload"
+                        type="file"
+                        fieldRef={register}
+                    />
+                </div>
+                {/*<input ref={register} id="fileupload" type="file" name="fileupload" />*/}
                 <ButtonWrapper>
                     <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
                     <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>

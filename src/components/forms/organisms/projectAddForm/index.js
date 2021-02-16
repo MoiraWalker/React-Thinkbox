@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
 import {Button, SelectOption} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
@@ -9,6 +9,30 @@ export const ProjectAddForm = ({setAddProject, setNewProject}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
+    const [protectedData, setProtectedData] = useState('');
+
+    useEffect(() => {
+        async function getProtectedData() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:8080/api/projects', {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                setProtectedData(response.data);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        getProtectedData();
+    }, []);
+
+
+    console.log('protectedddata', protectedData);
+
 
     async function addProject(data) {
         try {

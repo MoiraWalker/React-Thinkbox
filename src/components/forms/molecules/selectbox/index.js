@@ -3,7 +3,7 @@ import {Label} from '../../atoms';
 import './index.scss';
 
 
-export const SelectBox = ({label, name, fieldRef, id, children, value, onChange}) => {
+export const SelectBox = ({label, name, fieldRef, id, children, value, onChange, className}) => {
     return (
         <div>
             <Label htmlFor={id}>{label}</Label>
@@ -13,6 +13,7 @@ export const SelectBox = ({label, name, fieldRef, id, children, value, onChange}
                 ref={fieldRef}
                 onChange={onChange}
                 value={value}
+                className={className}
             >{children}</select>
         </div>
     );
