@@ -10,19 +10,22 @@ export const Routes = () => {
             <PrivateRoute exact path="/">
                 <Projects/>,
             </PrivateRoute>
-            <PrivateRoute exact path="/account">
-                <Account/>,
-            </PrivateRoute>
-            <PrivateRoute exact path="/projects">
+            <PrivateRoute path="/home">
                 <Projects/>,
             </PrivateRoute>
-            <PrivateRoute exact path="/project:id">
+            <PrivateRoute path="/account">
+                <Account/>,
+            </PrivateRoute>
+            <PrivateRoute path="/projects">
+                <Projects/>,
+            </PrivateRoute>
+            <PrivateRoute path="/project:id">
                 <Project/>,
             </PrivateRoute>
-            <PrivateRoute exact path="/post:id">
+            <PrivateRoute path="/post:id">
                 <Post/>,
             </PrivateRoute>
-            <PrivateRouteAdmin exact path="/admin">
+            <PrivateRouteAdmin path="/admin">
                 <Admin/>,
             </PrivateRouteAdmin>
             <Route path="/register" component={Register}></Route>

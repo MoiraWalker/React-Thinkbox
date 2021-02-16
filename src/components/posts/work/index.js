@@ -24,8 +24,7 @@ export const Work = () => {
 
     useEffect(() => {
         getWork();
-        setIsUpdated(false);
-    }, [isUpdated])
+    }, [setIsUpdated])
 
     async function getWork() {
         try {

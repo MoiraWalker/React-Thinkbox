@@ -31,7 +31,7 @@ export const WorkEditForm = ({id, toggleEdit, title, description, setIsUpdated})
             <form onSubmit={handleSubmit(updateWork)}>
                 <div className="form-wrapper">
                     <div className='form-item'>
-                        <h2>Edit Thought</h2>
+                        <h2>Edit Work</h2>
                         <InputField
                             name="title"
                             label="Title"
