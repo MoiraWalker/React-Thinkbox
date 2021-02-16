@@ -10,6 +10,7 @@ import {useHistory} from 'react-router-dom';
 import {WorkEditForm} from "../../forms/organisms/workEditForm";
 import {ExternalLink} from "react-external-link";
 
+
 export const Work = () => {
     const {id} = useParams();
     const [edit, toggleEdit] = useState(false);
@@ -24,7 +25,7 @@ export const Work = () => {
 
     useEffect(() => {
         getWork();
-    }, [setIsUpdated])
+    }, [isUpdated]);
 
     async function getWork() {
         try {
@@ -48,6 +49,13 @@ export const Work = () => {
         toggleEdit(true);
     }
 
+    const toggleUpdateWork = () => {
+        setIsUpdated(true);
+    }
+
+    console.log("isupdates", isUpdated);
+
+
     const onLink = (work) => {
         if ( work.link === "" ) {
             return null
@@ -59,7 +67,7 @@ export const Work = () => {
     return (
         <div>
             {edit ?
-                (<WorkEditForm id={id} setIsUpdated={setIsUpdated} toggleEdit={toggleEdit} title={work.title} description={work.description}></WorkEditForm>)
+                (<WorkEditForm id={id} toggleUpdateWork={toggleUpdateWork} toggleEdit={toggleEdit} title={work.title} description={work.description}></WorkEditForm>)
                 :
                 (<div className="post__card work">
                     <div className="thought__top">

@@ -12,9 +12,10 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
-            let upload = data.fileupload[0]
-            const formData = {...data, type:"WORK", fileupload: upload };
-            console.log("formdata", formData);
+            // let upload = data.fileupload[0]
+            // const formData = {...data, type: "WORK", fileupload: upload};
+            const formData = {...data, type: "WORK" };
+            // console.log("formdata", formData);
             const result = await axios.post(`http://localhost:8080/api/posts/works`, formData);
             setAddPost(false);
         } catch (error) {
@@ -37,57 +38,60 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
     }
 
     return (
-    <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-            <form onSubmit={handleSubmit(addWork)}>
-                <div className='form-item'>
-                    <InputField
-                        name="title"
-                        label="Title"
-                        type="text"
-                        fieldRef={register({
-                            required: {
-                                value: true,
-                                message: 'Title is required',
-                            }
-                        })}
-                    />
-                </div>
-                <div className='form-item'>
-                    <InputField
-                        name="description"
-                        label="Description"
-                        type="text"
-                        fieldRef={register({
-                            required: {
-                                value: true,
-                                message: 'Description is required',
-                            }
-                        })}
-                    />
-                </div>
-                <div className='form-item'>
-                    <InputField
-                        name="link"
-                        label="Link"
-                        type="text"
-                        fieldRef={register}
-                    />
-                </div>
-                <div className='form-item'>
-                    <InputField
-                        name="fileupload"
-                        label="File upload"
-                        type="file"
-                        fieldRef={register}
-                    />
-                </div>
-                {/*<input ref={register} id="fileupload" type="file" name="fileupload" />*/}
-                <ButtonWrapper>
-                    <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
-                    <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
-                </ButtonWrapper>
-            </form>
-        </FormProvider>
+        <div>
+            <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(addWork)}>
+                    <div className='form-item'>
+                        <InputField
+                            name="title"
+                            label="Title"
+                            type="text"
+                            fieldRef={register({
+                                required: {
+                                    value: true,
+                                    message: 'Title is required',
+                                }
+                            })}
+                        />
+                    </div>
+                    <div className='form-item'>
+                        <InputField
+                            name="description"
+                            label="Description"
+                            type="text"
+                            fieldRef={register({
+                                required: {
+                                    value: true,
+                                    message: 'Description is required',
+                                }
+                            })}
+                        />
+                    </div>
+                    <div className='form-item'>
+                        <InputField
+                            name="link"
+                            label="Link"
+                            type="text"
+                            fieldRef={register}
+                        />
+                    </div>
+                    <ButtonWrapper>
+                        <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
+                        <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
+                    </ButtonWrapper>
+                </form>
+            </FormProvider>
+            {/*<form>*/}
+            {/*    <div className='form-item'>*/}
+            {/*        <InputField*/}
+            {/*            name="fileupload"*/}
+            {/*            label="File upload"*/}
+            {/*            type="file"*/}
+            {/*            fieldRef={register}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*</form>*/}
+        </div>
     );
 }
 
