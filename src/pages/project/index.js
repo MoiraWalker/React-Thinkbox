@@ -51,21 +51,34 @@ export const Project = () => {
 
     async function getAllPosts() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts`);
-            setPosts(result.data);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/posts`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setPosts(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
 
     async function getAllThoughts() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts/thoughts`);
-            setThoughts(result.data);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/posts/thoughts`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setThoughts(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
+
 
     async function getAllWorks() {
         try {

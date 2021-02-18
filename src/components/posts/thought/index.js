@@ -28,19 +28,31 @@ export const Thought = () => {
 
     async function getThought() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts/thoughts/${id}`);
-            setThought(result.data);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/posts/thoughts/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setThought(response.data);
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 
     async function deleteThought(id) {
         try {
-            const result = await axios.delete(`http://localhost:8080/api/posts/thoughts/${id}`);
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(`http://localhost:8080/api/posts/thoughts/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             back();
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 

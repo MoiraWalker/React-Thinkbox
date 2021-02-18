@@ -12,14 +12,19 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
-            // let upload = data.fileupload[0]
-            // const formData = {...data, type: "WORK", fileupload: upload};
-            const formData = {...data, type: "WORK" };
-            // console.log("formdata", formData);
-            const result = await axios.post(`http://localhost:8080/api/posts/works`, formData);
-            setAddPost(false);
-        } catch (error) {
-            console.error(error);
+            let upload = data.fileupload[0]
+            const formData = {...data, type: "WORK", fileupload: upload};
+            console.log("formdata", formData);
+            const token = localStorage.getItem('token');
+            const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+           setAddPost(false);
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -75,22 +80,20 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                             fieldRef={register}
                         />
                     </div>
+                    <div className='form-item'>
+                        <InputField
+                            name="fileupload"
+                            label="File upload"
+                            type="file"
+                            fieldRef={register}
+                        />
+                    </div>
                     <ButtonWrapper>
                         <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
                         <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
                     </ButtonWrapper>
                 </form>
             </FormProvider>
-            {/*<form>*/}
-            {/*    <div className='form-item'>*/}
-            {/*        <InputField*/}
-            {/*            name="fileupload"*/}
-            {/*            label="File upload"*/}
-            {/*            type="file"*/}
-            {/*            fieldRef={register}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*</form>*/}
         </div>
     );
 }

@@ -15,15 +15,20 @@ export const WorkEditForm = ({id, toggleEdit, title, description, toggleUpdateWo
         toggleEdit(false);
     }
 
-
     async function updateWork(data) {
         try {
             const formData = {...data, type:"WORK"}
-            const result = await axios.put(`http://localhost:8080/api/posts/works/${id}`, formData);
+            const token = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:8080/api/posts/works/${id}`, formData,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             toggleUpdateWork(true);
             toggleEdit(false);
-        } catch (error) {
-            console.error(error);
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -32,7 +37,7 @@ export const WorkEditForm = ({id, toggleEdit, title, description, toggleUpdateWo
             <form onSubmit={handleSubmit(updateWork)}>
                 <div className="form-wrapper">
                     <div className='form-item'>
-                        <h2>Edit Thought</h2>
+                        <h2>Edit Work</h2>
                         <InputField
                             name="title"
                             label="Title"

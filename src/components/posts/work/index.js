@@ -27,21 +27,35 @@ export const Work = () => {
         getWork();
     }, [isUpdated]);
 
+
     async function getWork() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts/works/${id}`);
-            setWork(result.data);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/posts/works/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setWork(response.data);
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 
     async function deleteWork(id) {
         try {
-            const result = await axios.delete(`http://localhost:8080/api/posts/works/${id}`);
-            back();
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(`http://localhost:8080/api/posts/works/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            }
+            );
+           back();
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 
