@@ -42,18 +42,34 @@ export const Projects = () => {
 
     async function getAllProjects() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/projects`);
-            setProjects(result.data.sort(function (a, b) {
-                return a.id - b.id;
-            }));
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://localhost:8080/api/projects', {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setProjects(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
 
-    // const onSubmit = (data) => {
-    //     console.log(data);
+
+
+    //
+    // async function getAllProjects() {
+    //     try {
+    //         const result = await axios.get(`http://localhost:8080/api/projects`);
+    //         setProjects(result.data.sort(function (a, b) {
+    //             return a.id - b.id;
+    //         }));
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
     // }
+
+
 
     async function uploadFile(data) {
         try {

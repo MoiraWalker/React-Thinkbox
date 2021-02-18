@@ -28,13 +28,16 @@ export const Admin = () => {
 
     async function getAllUsers() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/users`);
-            console.log("users", result);
-            setUsers(result.data.sort(function (a, b) {
-                return a.id - b.id;
-            }));
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://localhost:8080/api/users', {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setUsers(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
 
