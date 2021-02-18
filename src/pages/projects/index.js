@@ -40,6 +40,7 @@ export const Projects = () => {
     }, [newProject])
 
 
+
     async function getAllProjects() {
         try {
             const token = localStorage.getItem('token');
@@ -54,20 +55,6 @@ export const Projects = () => {
             console.log(e);
         }
     }
-
-
-
-    //
-    // async function getAllProjects() {
-    //     try {
-    //         const result = await axios.get(`http://localhost:8080/api/projects`);
-    //         setProjects(result.data.sort(function (a, b) {
-    //             return a.id - b.id;
-    //         }));
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
 
 

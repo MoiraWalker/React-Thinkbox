@@ -9,38 +9,20 @@ export const ProjectAddForm = ({setAddProject, setNewProject}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
-    const [protectedData, setProtectedData] = useState('');
-
-    useEffect(() => {
-        async function getProtectedData() {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8080/api/projects', {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                setProtectedData(response.data);
-            } catch (e) {
-                console.log(e);
-            }
-        }
-
-        getProtectedData();
-    }, []);
-
-
-    console.log('protectedddata', protectedData);
-
 
     async function addProject(data) {
         try {
-            const result = await axios.post(`http://localhost:8080/api/projects/`, data);
-            setNewProject(true);
-            setAddProject(false);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.post('http://localhost:8080/api/projects', data,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+           setNewProject(true);
+           setAddProject(false);
+        } catch (e) {
+            console.log(e);
         }
     }
 

@@ -33,12 +33,19 @@ export const Project = () => {
         getAllPosts();
     }, [addPost]);
 
+
     async function getProject() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/projects/${id}`);
-            setProject(result.data);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/projects/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setProject(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
 
