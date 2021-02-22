@@ -13,7 +13,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
     async function addWork(data) {
         try {
             let upload = data.fileupload[0]
-            const formData = {...data, type: "WORK", fileupload: upload};
+            const formData = {...data, type: "WORK", fileName: "fileName"};
             console.log("formdata", formData);
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
@@ -23,20 +23,28 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                 }
             });
            setAddPost(false);
-        } catch (e) {
+        } catch(e) {
             console.log(e);
         }
     }
 
-    // async function uploadFile(data) {
-    //         let formData = new FormData();
-    //         formData.append("file", data.fileupload[0]);
-    //         console.log("FormDa", formData);
-    //         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+    async function uploadFile(data) {
+        try {
+            console.log("UPLOADFILE", data);
+            let formData = new FormData();
+            formData.append("file", data.fileupload[0]);
+            console.log("FormData", formData);
+            const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
+        } catch(e) {
+            console.error(e);
+        }
+    }
+
+    const onSubmit= (data) => {
+        let dataResponse = data;
+        uploadFile(dataResponse);
+        addWork(dataResponse);
+    }
 
     const onCancel = () => {
         setCancel(true);
@@ -45,7 +53,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
     return (
         <div>
             <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-                <form onSubmit={handleSubmit(addWork)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='form-item'>
                         <InputField
                             name="title"
@@ -89,7 +97,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                         />
                     </div>
                     <ButtonWrapper>
-                        <Button onClick={addWork} className="button button__primary button__margin-right">Save</Button>
+                        <Button  onClick={onSubmit} className="button button__primary button__margin-right">Save</Button>
                         <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
                     </ButtonWrapper>
                 </form>

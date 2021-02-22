@@ -11,24 +11,24 @@ export const Account = () => {
     const {user} = useAuthState();
     const [protectedData, setProtectedData] = useState('');
 
-    useEffect(() => {
-        async function getProtectedData() {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8080/api/user', {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                setProtectedData(response.data);
-            } catch (e) {
-                console.log(e);
-            }
-        }
-
-        getProtectedData();
-    }, []);
+    // useEffect(() => {
+    //     async function getProtectedData() {
+    //         try {
+    //             const token = localStorage.getItem('token');
+    //             const response = await axios.get('http://localhost:8080/api/user', {
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                     Authorization: `Bearer ${token}`,
+    //                 }
+    //             });
+    //             setProtectedData(response.data);
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     }
+    //
+    //     getProtectedData();
+    // }, []);
 
     const renderActiveComponent = () => {
         const components = {

@@ -9,9 +9,11 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {WorkEditForm} from "../../forms/organisms/workEditForm";
 import {ExternalLink} from "react-external-link";
+// import {AuthContext, useAuthState } from "../../../context/authContextProvider";
 
 
 export const Work = () => {
+    // const { isAuthenticated } = useAuthState();
     const {id} = useParams();
     const [edit, toggleEdit] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);

@@ -16,17 +16,6 @@ export const ThoughtEditForm = ({id, toggleEdit, title, description, setIsUpdate
         toggleEdit(false);
     }
 
-    // async function updateThought(data) {
-    //     try {
-    //         const formData = {...data, type:"THOUGHT"}
-    //         const result = await axios.put(`http://localhost:8080/api/posts/thoughts/${id}`, formData);
-    //         setIsUpdated(true);
-    //         toggleEdit(false);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
     async function updateThought(data) {
         try {
             const formData = {...data, type:"THOUGHT"}

@@ -40,7 +40,6 @@ export const Projects = () => {
     }, [newProject])
 
 
-
     async function getAllProjects() {
         try {
             const token = localStorage.getItem('token');
@@ -55,34 +54,39 @@ export const Projects = () => {
             console.log(e);
         }
     }
+    //
+    // async function uploadFile(data) {
+    //     try {
+    //         // let formData = new FormData();
+    //         // formData.append("file", fileupload.files[0]);
+    //         let formData = new FormData();
+    //         formData.append("file", data.fileupload[0]);
+    //         console.log("FormData", formData);
+    //         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
+    //     } catch(e) {
+    //         console.error(e);
+    //     }
+    // }
+    //
+
+//     async function uploadFile(data) {
+//         let formData = new FormData();
+//         formData.append("file", data.fileupload[0]);
+//         console.log("FormDa", formData);
+//         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
+//     } catch(error) {
+//         console.error(error);
+//     }
+// }
 
 
 
-    async function uploadFile(data) {
-        try {
-            // let formData = new FormData();
-            // formData.append("file", fileupload.files[0]);
-            let formData = new FormData();
-            formData.append("file", data.fileupload[0]);
-            console.log("FormDa", formData);
-            const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const addProjectForm = () => {
+const addProjectForm = () => {
         setAddProject(true);
     }
 
     return (
         <div className='page__wrapper'>
-            {/*<form onSubmit={handleSubmit(uploadFile)}>*/}
-            {/*    <input ref={register} id="fileupload" type="file" name="fileupload" />*/}
-            {/*    <button id="upload-button" onClick={uploadFile}>upload file</button>*/}
-            {/*</form>*/}
-
-
             {addProject ?
                 (<ProjectAddForm setAddProject={setAddProject} setNewProject={setNewProject}/> )
                 :
@@ -106,6 +110,11 @@ export const Projects = () => {
                         }
                     </div>
                 )}
+
+            {/*<form onSubmit={handleSubmit(uploadFile)}>*/}
+            {/*    <input ref={register} id="fileupload" type="file" name="fileupload" />*/}
+            {/*    <button id="upload-button" onClick={uploadFile}>upload file</button>*/}
+            {/*</form>*/}
 
         </div>
     );
