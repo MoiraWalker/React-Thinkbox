@@ -13,7 +13,8 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
     async function addWork(data) {
         try {
             let upload = data.fileupload[0]
-            const formData = {...data, type: "WORK", fileName: "fileName"};
+            let name = data.fileupload[0].name
+            const formData = {...data, type: "WORK", fileName: name};
             console.log("formdata", formData);
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
