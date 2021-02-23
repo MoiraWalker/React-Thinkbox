@@ -2,19 +2,25 @@ import React from 'react';
 import {ButtonWrapper, InputField} from "../../molecules";
 import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
+import { useState } from 'react';
 import './index.scss';
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 export const WorkAddForm = ({setCancel, setAddPost}) => {
+    const {id} = useParams();
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
+    const [fileName, setFileName] = useState("");
 
     async function addWork(data) {
         try {
-            let upload = data.fileupload[0]
-            let name = data.fileupload[0].name
-            const formData = {...data, type: "WORK", fileName: name};
+            console.log("Project id", id);
+            // let upload = data.fileupload[0];
+            setFileName(data.fileupload[0].name);
+
+            const formData = {...data, type: "WORK", fileName: fileName};
             console.log("formdata", formData);
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
@@ -31,7 +37,6 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function uploadFile(data) {
         try {
-            console.log("UPLOADFILE", data);
             let formData = new FormData();
             formData.append("file", data.fileupload[0]);
             console.log("FormData", formData);
@@ -94,7 +99,12 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                             name="fileupload"
                             label="File upload"
                             type="file"
-                            fieldRef={register}
+                            fieldRef={register({
+                                required: {
+                                    value: true,
+                                    message: 'File upload is required',
+                                }
+                            })}
                         />
                     </div>
                     <ButtonWrapper>

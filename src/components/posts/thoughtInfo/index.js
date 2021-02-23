@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import {useHistory} from "react-router-dom";
 
-export const ThoughtInfo = ({id, title, description}) => {
+export const ThoughtInfo = ({ id, title, description} ) => {
     const history = useHistory();
 
     const toPost = () => {

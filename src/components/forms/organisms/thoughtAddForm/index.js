@@ -13,9 +13,9 @@ export const ThoughtAddForm = ({setCancel, setAddPost}) => {
 
     async function addThought(data) {
         try {
-            const formData = {...data, type:"THOUGHT"};
+            const formData = {...data, type:"THOUGHT", projectId: 1};
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:8080/api/posts/thoughts', formData,{
+            const response = await axios.post('http://localhost:8080/api/posts/thoughts', formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
