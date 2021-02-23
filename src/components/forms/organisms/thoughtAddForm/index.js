@@ -5,15 +5,17 @@ import {useForm, FormProvider} from 'react-hook-form';
 import {useState} from 'react';
 import './index.scss';
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 export const ThoughtAddForm = ({setCancel, setAddPost}) => {
+    const {id} = useParams();
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
 
     async function addThought(data) {
         try {
-            const formData = {...data, type:"THOUGHT", projectId: 1};
+            const formData = {...data, type:"THOUGHT", projectId: id};
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/thoughts', formData, {
                 headers: {
