@@ -14,10 +14,16 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
 
     async function deleteProject(id) {
         try {
-            const result = await axios.delete(`http://localhost:8080/api/projects/${id}`);
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(`http://localhost:8080/api/projects/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setIsDeleted(id);
-        } catch (error) {
-            console.error(error);
+        } catch (e) {
+            console.log(e);
         }
     }
 

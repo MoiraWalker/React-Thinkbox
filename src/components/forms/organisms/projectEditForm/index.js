@@ -19,12 +19,18 @@ export const ProjectEditForm = ({id, title, toggleEdit, setIsUpdated, setAccess}
 
     async function updateProject(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/api/projects/${id}`, data);
+            const token = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:8080/api/projects/${id}`, data,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setIsUpdated(true);
             toggleEdit(false);
             setAccess(data.access);
-        } catch (error) {
-            console.error(error);
+        } catch (e) {
+            console.log(e);
         }
     }
 
