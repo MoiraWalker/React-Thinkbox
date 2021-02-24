@@ -10,10 +10,16 @@ export const User = ({ id, email, setIsDeleted, setIsUpdated, username  })  => {
 
     async function deleteUser(id) {
         try {
-            const result = await axios.delete(`http://localhost:8080/api/users/${id}`);
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(`http://localhost:8080/api/users/${id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setIsDeleted(id);
-        } catch (error) {
-            console.error(error);
+        } catch (e) {
+            console.log(e);
         }
     }
 

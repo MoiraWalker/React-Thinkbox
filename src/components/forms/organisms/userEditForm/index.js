@@ -18,13 +18,20 @@ export const UserEditForm = ({id, email, username, setIsUpdated, toggleEdit}) =>
 
     async function updateUser(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
+            const token = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:8080/api/users/${id}`, data ,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setIsUpdated(true);
             toggleEdit(false);
-        } catch (error) {
-            console.error(error);
+        } catch (e) {
+            console.log(e);
         }
     }
+
 
     const onCancel = () => {
         toggleEdit(false)
