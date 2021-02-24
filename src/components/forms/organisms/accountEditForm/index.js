@@ -5,7 +5,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
 
-export const AccountEditForm = ({ setActiveComponent, username, email, id  }) => {
+export const AccountEditForm = ({ setIsUpdated, setActiveComponent, username, email, id  }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
         defaultValues: { username: username, email: email},
         mode: 'onChange'
@@ -13,10 +13,17 @@ export const AccountEditForm = ({ setActiveComponent, username, email, id  }) =>
 
     async function updateAccount(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/api/users/${id}`, data);
-            setActiveComponent(false);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:8080/api/users/${id}`, data ,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setActiveComponent('show');
+            setIsUpdated(true);
+        } catch (e) {
+            console.log(e);
         }
     }
 

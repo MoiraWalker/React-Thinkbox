@@ -65,9 +65,11 @@ function AuthContextProvider({ children }) {
         username: data.username,
         email: data.email,
         roles: data.roles,
+        id: data.id,
       }
     })
     isAdmin(data.roles);
+    console.log("USER ID", data.id);
   }
 
   function isAdmin(data){

@@ -18,6 +18,7 @@ export const Work = () => {
     const [edit, toggleEdit] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
     const [work, setWork] = useState("");
+    const [image, setImage] = useState("");
 
     const history = useHistory();
 
@@ -27,7 +28,12 @@ export const Work = () => {
 
     useEffect(() => {
         getWork();
+        getImage();
     }, [isUpdated]);
+
+    useEffect(() => {
+        getImage();
+    }, []);
 
 
     async function getWork() {
@@ -40,6 +46,22 @@ export const Work = () => {
                 }
             });
             setWork(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async function getImage() {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/uploads/1.png`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setImage(response.data);
+            console.log("get image", response.data);
         } catch (e) {
             console.log(e);
         }

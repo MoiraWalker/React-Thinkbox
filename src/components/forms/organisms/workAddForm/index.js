@@ -16,6 +16,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
+            console.log("FILE DATA", data);
             setFileName(data.fileupload[0].name);
             const formData = {...data, type: "WORK", fileName: fileName, projectId: id};
             console.log("formdata", formData);

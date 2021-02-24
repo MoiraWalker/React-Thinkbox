@@ -9,34 +9,35 @@ import axios from "axios";
 export const Account = () => {
     const [activeComponent, setActiveComponent] = useState('show');
     const {user} = useAuthState();
-    const [protectedData, setProtectedData] = useState('');
+    const [isUpdated, setIsUpdated] = useState("");
 
-    // useEffect(() => {
-    //     async function getProtectedData() {
-    //         try {
-    //             const token = localStorage.getItem('token');
-    //             const response = await axios.get('http://localhost:8080/api/user', {
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                     Authorization: `Bearer ${token}`,
-    //                 }
-    //             });
-    //             setProtectedData(response.data);
-    //         } catch (e) {
-    //             console.log(e);
-    //         }
-    //     }
-    //
-    //     getProtectedData();
-    // }, []);
+
+    useEffect(() => {
+        if (isUpdated) {
+            getUser();
+            setIsUpdated(null);
+        }
+    }, [isUpdated])
+
+    async function getUser() {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:8080/api/users/${user.id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     const renderActiveComponent = () => {
         const components = {
             show: <AccountInfo username={user.username} email={user.email} setActiveComponent={setActiveComponent}/>,
-            edit: <AccountEditForm username={user.username} email={user.email}
-                                   setActiveComponent={setActiveComponent}/>,
-            password: <AccountChangePasswordForm username={user.username} email={user.email}
-                                                 setActiveComponent={setActiveComponent}/>,
+            edit: <AccountEditForm id={user.id} setIsUpdated={setIsUpdated} username={user.username} email={user.email} setActiveComponent={setActiveComponent}/>,
+            password: <AccountChangePasswordForm username={user.username} email={user.email} setActiveComponent={setActiveComponent}/>,
         }
         return components[activeComponent]
     }

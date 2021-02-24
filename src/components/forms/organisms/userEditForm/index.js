@@ -4,7 +4,6 @@ import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
-import {useState, useEffect} from 'react';
 
 export const UserEditForm = ({id, email, username, setIsUpdated, toggleEdit}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
