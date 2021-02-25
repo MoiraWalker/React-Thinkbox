@@ -52,7 +52,7 @@ export const Project = () => {
     async function getAllPosts() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/api/posts`, {
+            const response = await axios.get(`http://localhost:8080/api/posts/project/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ export const Project = () => {
     async function getAllThoughts() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/api/posts/thoughts`, {
+            const response = await axios.get(`http://localhost:8080/api/posts/thoughts/project/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -111,9 +111,6 @@ export const Project = () => {
     const handleSelectChange = (event) => {
         setSelectedType(event.target.value);
     }
-
-    console.log(selectedType);
-
 
     return (
         <div className='page__wrapper'>

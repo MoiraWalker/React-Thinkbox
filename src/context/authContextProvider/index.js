@@ -18,7 +18,8 @@ function AuthContextProvider({ children }) {
 
     async function getUserInfo() {
       try {
-        const response = await axios.get('https://polar-lake-14365.herokuapp.com/api/user', {
+        // https://polar-lake-14365.herokuapp.com/api/user
+        const response = await axios.get('http://localhost:8080/api/auth/signin', {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,

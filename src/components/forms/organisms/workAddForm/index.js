@@ -12,14 +12,11 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
-    const [fileName, setFileName] = useState("");
 
     async function addWork(data) {
         try {
-            console.log("FILE DATA", data);
-            setFileName(data.fileupload[0].name);
-            const formData = {...data, type: "WORK", fileName: fileName, projectId: id};
-            console.log("formdata", formData);
+            let fileName = data.fileupload[0].name;
+            const formData = {...data, type: "WORK", fileName: fileName};
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
                 headers: {
@@ -37,7 +34,6 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
         try {
             let formData = new FormData();
             formData.append("file", data.fileupload[0]);
-            console.log("FormData", formData);
             const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
         } catch(e) {
             console.error(e);

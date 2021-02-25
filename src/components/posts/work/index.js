@@ -9,8 +9,6 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {WorkEditForm} from "../../forms/organisms/workEditForm";
 import {ExternalLink} from "react-external-link";
-// import {AuthContext, useAuthState } from "../../../context/authContextProvider";
-
 
 export const Work = () => {
     // const { isAuthenticated } = useAuthState();
@@ -19,6 +17,7 @@ export const Work = () => {
     const [isUpdated, setIsUpdated] = useState(false);
     const [work, setWork] = useState("");
     const [image, setImage] = useState("");
+    const [fileName, setFileName] = useState("");
 
     const history = useHistory();
 
@@ -28,13 +27,12 @@ export const Work = () => {
 
     useEffect(() => {
         getWork();
-        getImage();
+        getImage(fileName);
     }, [isUpdated]);
 
     useEffect(() => {
-        getImage();
+        getImage(fileName);
     }, []);
-
 
     async function getWork() {
         try {
@@ -46,22 +44,22 @@ export const Work = () => {
                 }
             });
             setWork(response.data);
+            setFileName(response.data.fileName);
         } catch (e) {
             console.log(e);
         }
     }
 
-    async function getImage() {
+    async function getImage(fileName) {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/api/uploads/1.png`,{
+            const response = await axios.get(`http://localhost:8080/api/uploads/${fileName}`,{
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
             setImage(response.data);
-            console.log("get image", response.data);
         } catch (e) {
             console.log(e);
         }
@@ -91,9 +89,6 @@ export const Work = () => {
         setIsUpdated(true);
     }
 
-    console.log("isupdates", isUpdated);
-
-
     const onLink = (work) => {
         if ( work.link === "" ) {
             return null
@@ -115,6 +110,7 @@ export const Work = () => {
                         </div>
                         <p className="post__des">{work.description}</p>
                         {onLink(work)}
+                        <img src={image} alt="image"/>
                     </div>
                     <div className="post__footer">
                         <p className="post__label">Work</p>
