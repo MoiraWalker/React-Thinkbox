@@ -39,6 +39,7 @@ export const Projects = () => {
         }
     }, [newProject])
 
+    console.log("isdeleted", isDeleted);
 
     async function getAllProjects() {
         try {
@@ -54,32 +55,6 @@ export const Projects = () => {
             console.log(e);
         }
     }
-    //
-    // async function uploadFile(data) {
-    //     try {
-    //         // let formData = new FormData();
-    //         // formData.append("file", fileupload.files[0]);
-    //         let formData = new FormData();
-    //         formData.append("file", data.fileupload[0]);
-    //         console.log("FormData", formData);
-    //         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
-    //     } catch(e) {
-    //         console.error(e);
-    //     }
-    // }
-    //
-
-//     async function uploadFile(data) {
-//         let formData = new FormData();
-//         formData.append("file", data.fileupload[0]);
-//         console.log("FormDa", formData);
-//         const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
-//     } catch(error) {
-//         console.error(error);
-//     }
-// }
-
-
 
 const addProjectForm = () => {
         setAddProject(true);

@@ -21,7 +21,7 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
                     Authorization: `Bearer ${token}`,
                 }
             });
-            setIsDeleted(id);
+            setIsDeleted(true);
         } catch (e) {
             console.log(e);
         }

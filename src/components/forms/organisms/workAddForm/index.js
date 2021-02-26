@@ -15,8 +15,9 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
-            let fileName = data.fileupload[0].name;
-            const formData = {...data, type: "WORK", fileName: fileName};
+            let file = data.fileupload[0];
+            const base64 = await convertBase64(file);
+            const formData = {...data, type: "WORK", fileName: base64 };
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
                 headers: {
@@ -29,6 +30,22 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
             console.log(e);
         }
     }
+
+    const convertBase64 = (file) => {
+        let reader = new FileReader();
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
 
     async function uploadFile(data) {
         try {
