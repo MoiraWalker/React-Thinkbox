@@ -17,6 +17,8 @@ export const Project = () => {
     const [addPost, setAddPost] = useState(false);
     const [posts, setPosts] = useState("");
     const [selectedType, setSelectedType] = useState("all");
+    const [fileUpload, setFileUpload] = useState([]);
+    const [blobImage, setBlobImage] = useState("");
 
     useEffect(() => {
         getProject();
@@ -52,7 +54,8 @@ export const Project = () => {
     async function getAllPosts() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/api/posts/project/${id}`, {
+            // const response = await axios.get(`http://localhost:8080/api/posts/project/${id}`, {
+            const response = await axios.get(`http://localhost:8080/api/posts`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -93,20 +96,39 @@ export const Project = () => {
         setAddPost(true);
     }
 
+
+
     const renderPost = (post) => {
         if (post.type === "THOUGHT" && selectedType === "thought") {
             return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
         } else if (post.type === "WORK" && selectedType === "work") {
-            return <WorkInfo id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
+            return <WorkInfo image={post.fileUpload} id={post.id} title={post.title} description={post.description} link={post.link}></WorkInfo>
         } else if (post && selectedType === "all") {
             if (post.type === "THOUGHT") {
                 return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
             } else if (post.type === "WORK") {
-                return <WorkInfo id={post.id} title={post.title} description={post.description}
+                return <WorkInfo  image={post.fileUpload}  id={post.id} title={post.title} description={post.description}
                                  link={post.link}></WorkInfo>
             }
         }
     }
+
+
+    function dataURLtoFile(dataurl, filename) {
+
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {type:mime});
+    }
+
 
     const handleSelectChange = (event) => {
         setSelectedType(event.target.value);
@@ -114,6 +136,7 @@ export const Project = () => {
 
     return (
         <div className='page__wrapper'>
+            {/*<img src={blobImage} alt="image"/>*/}
             {addPost ?
                 (<PostAddForm setAddPost={setAddPost}></PostAddForm>)
                 :

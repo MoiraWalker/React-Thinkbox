@@ -16,7 +16,7 @@ export const AccountChangePasswordForm = ({ setActiveComponent, id }) => {
 
     async function updateAccount(data) {
         try {
-            const result = await axios.put(`http://localhost:8080/clients/${id}`, data);
+            const result = await axios.put(`http://localhost:8080/users/${id}`, data);
             setActiveComponent(false);
         } catch (error) {
             console.error(error);

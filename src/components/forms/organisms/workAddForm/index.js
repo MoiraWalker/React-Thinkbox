@@ -15,9 +15,11 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
 
     async function addWork(data) {
         try {
+            console.log("data", data);
             let file = data.fileupload[0];
+            console.log("file", file);
             const base64 = await convertBase64(file);
-            const formData = {...data, type: "WORK", fileName: base64 };
+            const formData = {...data, type: "WORK", fileUpload: base64 };
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
                 headers: {
@@ -109,6 +111,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                         <InputField
                             name="fileupload"
                             label="File upload"
+                            accept="image/*"
                             type="file"
                             fieldRef={register({
                                 required: {

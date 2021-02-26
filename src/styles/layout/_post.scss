@@ -3,6 +3,11 @@
 
 .post {
 
+  &__image {
+    width: 300px;
+    height: 200px;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -59,3 +64,4 @@
   width: 20px;
   height:20px;
 }
+
