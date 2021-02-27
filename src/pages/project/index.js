@@ -29,6 +29,7 @@ export const Project = () => {
 
     useEffect(() => {
         getAllThoughts();
+        getAllWorks();
     }, [addPost])
 
     useEffect(() => {
@@ -54,8 +55,7 @@ export const Project = () => {
     async function getAllPosts() {
         try {
             const token = localStorage.getItem('token');
-            // const response = await axios.get(`http://localhost:8080/api/posts/project/${id}`, {
-            const response = await axios.get(`http://localhost:8080/api/posts`, {
+            const response = await axios.get(`http://localhost:8080/api/posts/project/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -82,13 +82,18 @@ export const Project = () => {
         }
     }
 
-
     async function getAllWorks() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts/works`);
-            setWorks(result.data);
-        } catch (error) {
-            console.error(error);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/api/posts/works/project/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setWorks(response.data);
+        } catch (e) {
+            console.log(e);
         }
     }
 

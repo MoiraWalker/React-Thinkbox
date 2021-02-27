@@ -2,7 +2,6 @@ import React from 'react';
 import {ButtonWrapper, InputField} from "../../molecules";
 import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
-import { useState } from 'react';
 import './index.scss';
 import axios from "axios";
 import {useParams} from "react-router-dom";
@@ -19,7 +18,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
             let file = data.fileupload[0];
             console.log("file", file);
             const base64 = await convertBase64(file);
-            const formData = {...data, type: "WORK", fileUpload: base64 };
+            const formData = {...data, type: "WORK", fileUpload: base64, currentProjectId: id };
             const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
                 headers: {
