@@ -11,7 +11,13 @@ export const Post = () => {
 
     async function getPost() {
         try {
-            const result = await axios.get(`http://localhost:8080/api/posts/${id}`);
+            const token = localStorage.getItem('token');
+            const result = await axios.get(`http://localhost:8080/api/posts/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setPost(result.data);
         } catch (error) {
             console.error(error);
