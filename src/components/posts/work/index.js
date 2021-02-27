@@ -11,14 +11,12 @@ import {WorkEditForm} from "../../forms/organisms/workEditForm";
 import {ExternalLink} from "react-external-link";
 
 export const Work = () => {
-    // const { isAuthenticated } = useAuthState();
     const {id} = useParams();
     const [edit, toggleEdit] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
     const [work, setWork] = useState("");
     const [image, setImage] = useState("");
     const [fileName, setFileName] = useState("");
-
     const history = useHistory();
 
     const back = () => {
@@ -110,7 +108,7 @@ export const Work = () => {
                         </div>
                         <p className="post__des">{work.description}</p>
                         {onLink(work)}
-                        <img src={image} alt="image"/>
+                        <img src={work.fileUpload} className="post__image" alt="image"/>
                     </div>
                     <div className="post__footer">
                         <p className="post__label">Work</p>

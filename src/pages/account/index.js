@@ -7,6 +7,7 @@ import {useAuthState} from "../../context/authContextProvider";
 import axios from "axios";
 
 export const Account = () => {
+    const { isAuthenticated } = useAuthState();
     const [activeComponent, setActiveComponent] = useState('show');
     const {user} = useAuthState();
     const [isUpdated, setIsUpdated] = useState("");

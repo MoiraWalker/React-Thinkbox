@@ -4,12 +4,14 @@ import { Button } from '../../atoms';
 import { useForm, FormProvider } from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
+import {useAuthState} from "../../../../context/authContextProvider";
 
 export const AccountEditForm = ({ setIsUpdated, setActiveComponent, username, email, id  }) => {
     const { register, unregister, watch, reset, handleSubmit,  ...methods } = useForm({
         defaultValues: { username: username, email: email},
         mode: 'onChange'
     });
+    const {user} = useAuthState();
 
     async function updateAccount(data) {
         try {

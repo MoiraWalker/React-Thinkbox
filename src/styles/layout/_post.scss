@@ -4,8 +4,13 @@
 .post {
 
   &__image {
-    width: 300px;
-    height: 200px;
+    max-width: 450px;
+    max-height: 400px;
+  }
+
+  &__image-info {
+    max-width: 300px;
+    max-height: 170px;
   }
 
   &__header {
