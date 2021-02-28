@@ -63,7 +63,7 @@ export const ProjectInfo = ({id, setIsDeleted, title, privateView, setIsUpdated}
                     </div>
                     <div className="project__align">
                         <p className="access">{access}</p>
-                        <Button className="button button__tertairy" onClick={toProject}>Go to project</Button>
+                        <Button className="button button__project" onClick={toProject}>Go to project</Button>
                     </div>
                 </div>
             )}

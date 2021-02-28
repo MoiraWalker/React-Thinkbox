@@ -103,7 +103,11 @@ function AuthContextProvider({ children }) {
   return (
       <AuthContext.Provider value={providerData}>
         {authState.status === 'done' && children}
-        {authState.status === 'pending' && <p>Loading...</p>}
+        {authState.status === 'pending' &&
+        <div className="page__container page__center">
+          <p>Loading...</p>
+        </div>
+     }
       </AuthContext.Provider>
   );
 }

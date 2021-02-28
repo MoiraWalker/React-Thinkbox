@@ -16,14 +16,15 @@ export const AccountEditForm = ({setIsUpdated, setActiveComponent, username, ema
     async function updateAccount(data) {
         try {
             const token = localStorage.getItem('token');
-            const formData = {...data, type:"THOUGHT", username: username, password: token };
+            const formData = {...data, username: username, password: token };
             console.log("formdata", formData);
-            const response = await axios.put(`http://localhost:8080/api/users/${id}`, data, {
+            const response = await axios.put(`http://localhost:8080/api/users/email/${id}`, data, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
+            console.log("response update", response);
             setActiveComponent('show');
             setIsUpdated(true);
         } catch (e) {

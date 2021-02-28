@@ -86,11 +86,6 @@ const addProjectForm = () => {
                     </div>
                 )}
 
-            {/*<form onSubmit={handleSubmit(uploadFile)}>*/}
-            {/*    <input ref={register} id="fileupload" type="file" name="fileupload" />*/}
-            {/*    <button id="upload-button" onClick={uploadFile}>upload file</button>*/}
-            {/*</form>*/}
-
         </div>
     );
 };
