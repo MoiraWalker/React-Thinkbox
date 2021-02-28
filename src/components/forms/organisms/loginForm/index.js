@@ -1,12 +1,12 @@
 import React from 'react';
-import { ButtonWrapper, InputField } from "../../molecules";
-import { Button } from '../../atoms';
-import { useForm, FormProvider } from 'react-hook-form';
-import { useState, useEffect, useContext } from 'react';
+import {ButtonWrapper, InputField} from "../../molecules";
+import {Button} from '../../atoms';
+import {useForm, FormProvider} from 'react-hook-form';
+import {useState, useEffect, useContext} from 'react';
 import './index.scss';
-import { NavLink, useHistory } from "react-router-dom";
-import { LinkWrapper } from "../../molecules/linkWrapper";
-import { AuthContext, useAuthState } from "../../../../context/authContextProvider";
+import {NavLink, useHistory} from "react-router-dom";
+import {LinkWrapper} from "../../molecules/linkWrapper";
+import {AuthContext, useAuthState} from "../../../../context/authContextProvider";
 import axios from 'axios';
 
 export const LoginForm = () => {

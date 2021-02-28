@@ -37,9 +37,6 @@ export const Post = () => {
         }
     }
 
-
-    console.log(post);
-
     return (
         <div className="page__container page__center">
             {getPostType()}

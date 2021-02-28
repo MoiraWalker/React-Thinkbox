@@ -17,9 +17,9 @@ export const WorkEditForm = ({id, toggleEdit, title, description, toggleUpdateWo
 
     async function updateWork(data) {
         try {
-            const formData = {...data, type:"WORK"}
+            const formData = {...data, type: "WORK"}
             const token = localStorage.getItem('token');
-            const response = await axios.put(`http://localhost:8080/api/posts/works/${id}`, formData,{
+            const response = await axios.put(`http://localhost:8080/api/posts/works/${id}`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -72,7 +72,8 @@ export const WorkEditForm = ({id, toggleEdit, title, description, toggleUpdateWo
                         />
                     </div>
                     <ButtonWrapper>
-                        <Button onClick={updateWork} className="button button__primary button__margin-right">Save</Button>
+                        <Button onClick={updateWork}
+                                className="button button__primary button__margin-right">Save</Button>
                         <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
                     </ButtonWrapper>
                 </div>

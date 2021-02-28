@@ -1,7 +1,5 @@
 import React, { createContext, useState } from 'react';
-
 export const BurgerBarContext = createContext({});
-
 
 const BurgerBarContextProvider = ({ children}) => {
     const [open, setOpen ]= useState(false);

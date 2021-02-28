@@ -1,8 +1,7 @@
 import React from 'react';
-import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
-import {Button, SelectOption} from '../../atoms';
+import {ButtonWrapper, InputField} from "../../molecules";
+import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
-import {useState} from 'react';
 import './index.scss';
 import axios from "axios";
 

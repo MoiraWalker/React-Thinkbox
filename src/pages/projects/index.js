@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Button } from "../../components/forms/atoms/button";
 import axios from "axios";
 import { ProjectAddForm } from "../../components/forms/organisms/projectAddForm";
-import { useForm } from "react-hook-form";
 
 export const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -12,7 +11,6 @@ export const Projects = () => {
     const [isDeleted, setIsDeleted] = useState(null);
     const [addProject, setAddProject] = useState(false);
     const [newProject, setNewProject ] = useState(false);
-    const { Register, handleSubmit, register } = useForm();
 
     useEffect(() => {
         getAllProjects();

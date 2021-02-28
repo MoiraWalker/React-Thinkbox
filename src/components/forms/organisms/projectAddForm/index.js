@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {ButtonWrapper, InputField, SelectBox} from "../../molecules";
 import {Button, SelectOption} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
@@ -13,14 +13,14 @@ export const ProjectAddForm = ({setAddProject, setNewProject}) => {
     async function addProject(data) {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:8080/api/projects', data,{
+            const response = await axios.post('http://localhost:8080/api/projects', data, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
-           setNewProject(true);
-           setAddProject(false);
+            setNewProject(true);
+            setAddProject(false);
         } catch (e) {
             console.log(e);
         }
@@ -65,8 +65,10 @@ export const ProjectAddForm = ({setAddProject, setNewProject}) => {
                             </SelectBox>
                         </div>
                         <ButtonWrapper>
-                            <Button onClick={addProject} className="button button__primary button__margin-right">Save</Button>
-                            <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
+                            <Button onClick={addProject}
+                                    className="button button__primary button__margin-right">Save</Button>
+                            <Button type="button" className="button button__secondary"
+                                    onClick={onCancel}>Cancel</Button>
                         </ButtonWrapper>
                     </div>
                 </form>

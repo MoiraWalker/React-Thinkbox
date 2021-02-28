@@ -1,7 +1,7 @@
 import './index.scss';
 import React, {useContext} from 'react';
 import {Button} from "../forms/atoms/button";
-import {AuthContext, useAuthState} from "../../context/authContextProvider";
+import {AuthContext} from "../../context/authContextProvider";
 
 
 export const AccountInfo = ({setActiveComponent, username, email}) => {

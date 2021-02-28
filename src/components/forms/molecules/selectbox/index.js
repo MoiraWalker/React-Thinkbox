@@ -2,7 +2,6 @@ import React from 'react';
 import {Label} from '../../atoms';
 import './index.scss';
 
-
 export const SelectBox = ({label, name, fieldRef, id, children, value, onChange, className}) => {
     return (
         <div>

@@ -17,8 +17,6 @@ export const Project = () => {
     const [addPost, setAddPost] = useState(false);
     const [posts, setPosts] = useState("");
     const [selectedType, setSelectedType] = useState("all");
-    const [fileUpload, setFileUpload] = useState([]);
-    const [blobImage, setBlobImage] = useState("");
 
     useEffect(() => {
         getProject();
@@ -101,8 +99,6 @@ export const Project = () => {
         setAddPost(true);
     }
 
-
-
     const renderPost = (post) => {
         if (post.type === "THOUGHT" && selectedType === "thought") {
             return <ThoughtInfo id={post.id} title={post.title} description={post.description}></ThoughtInfo>
@@ -118,30 +114,12 @@ export const Project = () => {
         }
     }
 
-
-    function dataURLtoFile(dataurl, filename) {
-
-        let arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
-
-        while(n--){
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-
-        return new File([u8arr], filename, {type:mime});
-    }
-
-
     const handleSelectChange = (event) => {
         setSelectedType(event.target.value);
     }
 
     return (
         <div className='page__wrapper'>
-            {/*<img src={blobImage} alt="image"/>*/}
             {addPost ?
                 (<PostAddForm setAddPost={setAddPost}></PostAddForm>)
                 :

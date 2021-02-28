@@ -1,5 +1,4 @@
 import './index.scss';
-import React, { useState } from 'react';
 import { NavList } from "../navList";
 import { BurgerBarContext } from "../../../context/burgerBarContextProvider";
 import { useContext } from 'react';

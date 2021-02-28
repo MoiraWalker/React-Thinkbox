@@ -9,7 +9,6 @@ export const ThoughtInfo = ({ id, title, description} ) => {
         history.push(`/post${id}`);
     }
 
-
     return(
         <div onClick={toPost} className="post__card post__info thought-info">
             <div className="thought__top">

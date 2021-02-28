@@ -43,11 +43,11 @@
   }
 
   &__project {
-    background-color: $off-white;
+    background-color: $button-project;
     padding: 5px 10px;
 
     &:hover {
-      background-color: #fbf3f5;
+      background-color: $button-project--hover;
     }
   }
 

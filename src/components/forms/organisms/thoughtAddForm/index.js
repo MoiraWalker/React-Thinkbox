@@ -1,6 +1,6 @@
 import React from 'react';
 import {ButtonWrapper, InputField} from "../../molecules";
-import {Button, SelectOption} from '../../atoms';
+import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
 import './index.scss';
 import axios from "axios";
@@ -14,7 +14,7 @@ export const ThoughtAddForm = ({setCancel, setAddPost}) => {
 
     async function addThought(data) {
         try {
-            const formData = {...data, type:"THOUGHT", currentProjectId: id};
+            const formData = {...data, type: "THOUGHT", currentProjectId: id};
             const token = localStorage.getItem('token');
             const response = await axios.post(`http://localhost:8080/api/posts/thoughts`, formData, {
                 headers: {

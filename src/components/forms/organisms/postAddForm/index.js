@@ -30,7 +30,6 @@ export const PostAddForm = ({setAddPost}) => {
         setSelectedType(event.target.value);
     }
 
-
     const renderActiveForm = () => {
         if (selectedType === "work") {
             return <WorkAddForm setCancel={setCancel} setAddPost={setAddPost}></WorkAddForm>
@@ -42,8 +41,8 @@ export const PostAddForm = ({setAddPost}) => {
     return (
         <div className="page__center">
             <div className="form-wrapper">
-            <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-                <form onSubmit={handleSubmit(addPost)}>
+                <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(addPost)}>
                         <h2>Add post</h2>
                         <div className='form-item'>
                             <SelectBox
@@ -55,10 +54,10 @@ export const PostAddForm = ({setAddPost}) => {
                             </SelectBox>
                         </div>
 
-                </form>
-            </FormProvider>
-            {renderActiveForm()}
-        </div>
+                    </form>
+                </FormProvider>
+                {renderActiveForm()}
+            </div>
         </div>
     );
 }

@@ -18,16 +18,16 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
             let file = data.fileupload[0];
             console.log("file", file);
             const base64 = await convertBase64(file);
-            const formData = {...data, type: "WORK", fileUpload: base64, currentProjectId: id };
+            const formData = {...data, type: "WORK", fileUpload: base64, currentProjectId: id};
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:8080/api/posts/works', formData,{
+            const response = await axios.post('http://localhost:8080/api/posts/works', formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
-           setAddPost(false);
-        } catch(e) {
+            setAddPost(false);
+        } catch (e) {
             console.log(e);
         }
     }
@@ -53,12 +53,12 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
             let formData = new FormData();
             formData.append("file", data.fileupload[0]);
             const result = await axios.post(`http://localhost:8080/api/uploads`, formData);
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
     }
 
-    const onSubmit= (data) => {
+    const onSubmit = (data) => {
         let dataResponse = data;
         uploadFile(dataResponse);
         addWork(dataResponse);
@@ -121,7 +121,7 @@ export const WorkAddForm = ({setCancel, setAddPost}) => {
                         />
                     </div>
                     <ButtonWrapper>
-                        <Button  onClick={onSubmit} className="button button__primary button__margin-right">Save</Button>
+                        <Button onClick={onSubmit} className="button button__primary button__margin-right">Save</Button>
                         <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
                     </ButtonWrapper>
                 </form>
