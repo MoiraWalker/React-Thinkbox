@@ -69,7 +69,6 @@ function AuthContextProvider({ children }) {
       }
     })
     isAdmin(data.roles);
-    console.log("USER ID", data.id);
   }
 
   function isAdmin(data){

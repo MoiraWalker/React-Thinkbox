@@ -28,7 +28,7 @@ export const AccountInfo = ({setActiveComponent, username, email}) => {
                 </div>
             </div>
             <div className="account__edit-wrapper">
-                <div className="account__edit" onClick={editUser}>Edit account</div>
+                <div className="account__edit" onClick={editUser}>Edit email</div>
                 <div className="account__edit" onClick={changePassword}>Change password</div>
             </div>
             <Button type='button' onClick={() => logout()} className="button button__primary account__button-wrapper">Log out</Button>

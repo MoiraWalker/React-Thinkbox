@@ -16,13 +16,13 @@ export const Account = () => {
 
     useEffect(() => {
         setCurrentUser(user);
+        console.log("user", user);
     },[]);
 
 
 
     useEffect(() => {
         if (isUpdated) {
-            console.log("is in useeffect");
             getUser();
             setIsUpdated(null);
         }
@@ -49,7 +49,7 @@ export const Account = () => {
     const renderActiveComponent = () => {
         const components = {
             show: <AccountInfo username={currentUser.username} email={currentUser.email} setActiveComponent={setActiveComponent}/>,
-            edit: <AccountEditForm id={currentUser.id} setIsUpdated={setIsUpdated} username={currentUser.username} email={currentUser.email} setActiveComponent={setActiveComponent}/>,
+            edit: <AccountEditForm username={currentUser.username} id={currentUser.id} password={user.password} setIsUpdated={setIsUpdated} username={currentUser.username} email={currentUser.email} setActiveComponent={setActiveComponent}/>,
             password: <AccountChangePasswordForm username={currentUser.username} email={currentUser.email} setActiveComponent={setActiveComponent}/>,
         }
         return components[activeComponent]

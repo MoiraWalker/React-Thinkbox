@@ -2,42 +2,36 @@ import React from 'react';
 import {ButtonWrapper, InputField} from "../../molecules";
 import {Button} from '../../atoms';
 import {useForm, FormProvider} from 'react-hook-form';
+import {useState} from 'react';
 import './index.scss';
-import axios from "axios";
+
 
 export const AccountChangePasswordForm = ({setActiveComponent, id}) => {
     const {register, unregister, watch, reset, handleSubmit, ...methods} = useForm({
         mode: 'onChange'
     });
+    const [warning, setWarning] = useState(false);
 
     const onError = (errorList) => {
         console.log(errorList)
     }
 
-    async function updateAccount(data) {
-        try {
-            const token = localStorage.getItem('token');
-            const result = await axios.put(`http://localhost:8080/users/${id}`, data,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                        }
-                    });
-            setActiveComponent(false);
-        } catch (error) {
-            console.error(error);
-        }
+    const passwordWarning = () => {
+        setWarning(true);
     }
+
+    console.log("warning", warning);
 
     const onCancel = () => {
         setActiveComponent('show');
+        setWarning(false);
     }
 
     return (
+        <div>
         <FormProvider {...methods} register={register} watch={watch} handleSubmit={handleSubmit}>
-            <form onSubmit={handleSubmit(updateAccount, onError)}>
-                <div className='form-item'>
+            <form onSubmit={handleSubmit(passwordWarning, onError)}>
+                <div className='form-item top'>
                     <InputField
                         className="label--light"
                         name="password"
@@ -46,7 +40,7 @@ export const AccountChangePasswordForm = ({setActiveComponent, id}) => {
                         fieldRef={register({
                             required: {
                                 value: true,
-                                message: 'password is required',
+                                message: 'Password is required',
                             }
                         })}
                     />
@@ -60,18 +54,22 @@ export const AccountChangePasswordForm = ({setActiveComponent, id}) => {
                         fieldRef={register({
                             required: {
                                 value: true,
-                                message: 'Email name is required',
-                            },
+                                message: 'Repeat password is required',
+                            }
                         })}
                     />
                 </div>
                 <ButtonWrapper>
-                    <Button onClick={updateAccount} className="button button__primary button__margin-right">Save
+                    <Button onClick={passwordWarning} className="button button__primary button__margin-right">Save
                         Changes</Button>
-                    <Button type="button" className="button button__secondary" onClick={onCancel}>Cancel</Button>
+                    <Button type="button" className="button button__tertairy" onClick={onCancel}>Cancel</Button>
                 </ButtonWrapper>
             </form>
         </FormProvider>
+            { warning && <div className="warning">
+                <p>Save changes for password not implemented yet. Updating a password will break the token from logged in user.</p>
+            </div> }
+        </div>
     );
 }
 

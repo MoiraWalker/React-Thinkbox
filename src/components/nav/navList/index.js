@@ -14,7 +14,7 @@ export const NavList = () => {
         <ul className={open ? 'nav-list nav-list--open' : 'nav-list nav-list--closed'} >
             <li>{ getAdmin() &&  <NavLink to="/admin" exact activeClassName="nav-link--active" className="nav-link nav-link__padding nav-link--is-authorised">Admin</NavLink>}</li>
             <li>{ isAuthenticated &&  <NavLink to="/" exact activeClassName="nav-link--active" className="nav-link nav-link__padding">Projects</NavLink>}</li>
-            <li>{ isAuthenticated && <NavLink to="/account" exact activeClassName="nav-link--active" className="nav-link nav-link__padding">{user.username}</NavLink>}</li>
+            <li>{ isAuthenticated && <NavLink to="/account" exact activeClassName="nav-link--active" className="nav-link nav-link__padding">Account</NavLink>}</li>
             <li><NavLink to="/account" exact activeClassName="nav-link--active" className="nav-link nav-link__logout">Logout</NavLink></li>
         </ul>
     );

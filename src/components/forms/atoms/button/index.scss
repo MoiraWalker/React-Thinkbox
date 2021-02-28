@@ -33,8 +33,13 @@
   }
 
   &__tertairy {
-    background-color: $off-white;
+    background-color: $button-tertairy;
     padding: 5px 10px;
+    color: white;
+
+    &:hover {
+      background-color: $button-tertairy--hover;
+    }
   }
 
   &__icon {
